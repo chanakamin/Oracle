@@ -1,0 +1,46 @@
+﻿@model Oracle.Models.product
+
+<form name="addProduct" id="addProduct" ng-submit="SubmitProduct()">
+    <fieldset>
+        <legend> {{ text.title }} </legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="productName" ng-model="product.name" />
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="productDescription" ng-model="product.description" />
+        </div>
+        <div class="editor-field">
+            <label for="amount"> {{ text.amount }} </label>
+            <input type="number" step="0.01" ng-model="product.weight_in_volume" />
+        </div>
+        <div class="editor-field">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{ text.name }} </th>
+                        <th>{{ text.value }} </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="nut in product.mustNutrition">
+                        <td>{{ nut.name }}({{ nut.alias }} ):</td>
+                        <td>
+                            <input type="number" step="0.1" ng-model="nut.amount" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>

@@ -1,0 +1,77 @@
+﻿@model Oracle.Models.recipe
+
+<form name="addRecipe" id="addRecipe" ng-submit="SubmitRecipe()">
+    <fieldset>
+        <legend>recipe</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user_id)
+            @Html.ValidationMessageFor(model => model.user_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.preparation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.preparation)
+            @Html.ValidationMessageFor(model => model.preparation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.time)
+            @Html.ValidationMessageFor(model => model.time)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.portions)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.portions)
+            @Html.ValidationMessageFor(model => model.portions)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tips)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tips)
+            @Html.ValidationMessageFor(model => model.tips)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.comments)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.comments)
+            @Html.ValidationMessageFor(model => model.comments)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.approved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.approved)
+            @Html.ValidationMessageFor(model => model.approved)
+        </div>
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>
+ <button ng-click="produc.add()"> add product </button>
+ <div add-product="" ng-show="produc.show"></div>

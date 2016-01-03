@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Recipe/_LayoutRecipe.cshtml";
+}
+<script type="text/javascript">
+   
+</script>
+<h2>Index</h2>
+
+<div ng-app="app" ng-controller="indexCtrl">
+    {{ 1+1}}
+    {{ msg }}
+    {{ "angular " + "is working" }}
+    <ul>
+        <li ng-repeat="product in products">{{product.name}}</li>
+    </ul>
+    <button ng-click="initList()">init list</button>
+    <br />
+    <a href="" ng-click="link('newRecipe')">New Recipe</a>
+    <a href="" ng-click="link('findRecipe')">Find Recipe</a>
+    <a href="" ng-click="link('addProduct')">add product</a>
+    <div ng-view>
+
+    </div>
+</div>
+
+

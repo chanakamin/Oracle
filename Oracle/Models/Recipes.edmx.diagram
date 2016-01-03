@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="312ea022e3214791a991190ef5ec663e" Name="Diagram1">
+        <EntityTypeShape EntityType="recipeContext.equipment_in_recipe" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.measure_type" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.measurement" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.nutritional_value" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.product" Width="2" PointX="4.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.products_in_nutritional_value" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.products_in_recipe" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.recipe" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.recipe_for_user" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.sysdiagram" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeContext.user" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="recipeContext.FK_equipment_in_recipe_recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_measurements_measure_type" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_measurements_measurements" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_nutritional_value_measurements" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_in_recipe_measurements" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_measurements" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_measurements1" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_in_nutritional_value_nutritional_value" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_in_nutritional_value_products" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_in_recipe_products" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_user" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_products_in_recipe_recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_recipe_for_user_recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="recipeContext.FK_recipe_for_user_user" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="recipeContext.measurement_with_type" Width="2" PointX="9.875" PointY="8.875" />
+        <EntityTypeShape EntityType="recipeContext.nutritional_value_details" Width="1.5" PointX="10.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

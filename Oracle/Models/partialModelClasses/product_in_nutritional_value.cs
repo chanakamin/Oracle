@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Oracle.Models
+{
+    public partial class products_in_nutritional_value
+    {
+        static recipeEntities re;
+        static products_in_nutritional_value()
+        {
+            re = new recipeEntities();
+        }        
+       
+        //========= Constructors
+       
+        public static products_in_nutritional_value create(NutritonalValue_for_product nutritional_for_product)
+        {
+            var pn = new products_in_nutritional_value();
+            pn.amount_per_100 = nutritional_for_product.amount;
+            pn.nutritional_value_id = nutritional_for_product.idNutritional;
+            pn.product_id = nutritional_for_product.productId;
+            return pn;
+        }       
+    }
+
+}

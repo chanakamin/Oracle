@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="recipeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="recipeEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="companies" EntityType="recipeModel.company" />
+    <EntitySet Name="equipment_in_recipe" EntityType="recipeModel.equipment_in_recipe" />
+    <EntitySet Name="measure_type" EntityType="recipeModel.measure_type" />
+    <EntitySet Name="measurements" EntityType="recipeModel.measurement" />
+    <EntitySet Name="nutritional_value" EntityType="recipeModel.nutritional_value" />
+    <EntitySet Name="products" EntityType="recipeModel.product" />
+    <EntitySet Name="products_in_company" EntityType="recipeModel.products_in_company" />
+    <EntitySet Name="products_in_nutritional_value" EntityType="recipeModel.products_in_nutritional_value" />
+    <EntitySet Name="products_in_recipe" EntityType="recipeModel.products_in_recipe" />
+    <EntitySet Name="products_per_measuremnts" EntityType="recipeModel.products_per_measuremnts" />
+    <EntitySet Name="recipes" EntityType="recipeModel.recipe" />
+    <EntitySet Name="recipe_for_user" EntityType="recipeModel.recipe_for_user" />
+    <EntitySet Name="special_equipment" EntityType="recipeModel.special_equipment" />
+    <EntitySet Name="sysdiagrams" EntityType="recipeModel.sysdiagram" />
+    <EntitySet Name="users" EntityType="recipeModel.user" />
+    <AssociationSet Name="FK_products_in_company_company" Association="recipeModel.FK_products_in_company_company">
+      <End Role="company" EntitySet="companies" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_in_recipe_recipe" Association="recipeModel.FK_equipment_in_recipe_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="equipment_in_recipe" EntitySet="equipment_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_in_recipe_special_equipment" Association="recipeModel.FK_equipment_in_recipe_special_equipment">
+      <End Role="special_equipment" EntitySet="special_equipment" />
+      <End Role="equipment_in_recipe" EntitySet="equipment_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_measurements_measure_type" Association="recipeModel.FK_measurements_measure_type">
+      <End Role="measure_type" EntitySet="measure_type" />
+      <End Role="measurements" EntitySet="measurements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_measurements_measurements" Association="recipeModel.FK_measurements_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="measurements1" EntitySet="measurements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_nutritional_value_measurements" Association="recipeModel.FK_nutritional_value_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="nutritional_value" EntitySet="nutritional_value" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_measurements" Association="recipeModel.FK_products_in_recipe_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_per_measuremnts_measurements" Association="recipeModel.FK_products_per_measuremnts_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="products_per_measuremnts" EntitySet="products_per_measuremnts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_nutritional_value_nutritional_value" Association="recipeModel.FK_products_in_nutritional_value_nutritional_value">
+      <End Role="nutritional_value" EntitySet="nutritional_value" />
+      <End Role="products_in_nutritional_value" EntitySet="products_in_nutritional_value" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_products" Association="recipeModel.FK_products_in_company_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_per_measuremnts_products" Association="recipeModel.FK_products_per_measuremnts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="products_per_measuremnts" EntitySet="products_per_measuremnts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_products_in_nutritional_value" Association="recipeModel.FK_products_in_company_products_in_nutritional_value">
+      <End Role="products_in_nutritional_value" EntitySet="products_in_nutritional_value" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_user" Association="recipeModel.FK_products_in_company_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_products_in_company" Association="recipeModel.FK_products_in_recipe_products_in_company">
+      <End Role="products_in_company" EntitySet="products_in_company" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_recipe" Association="recipeModel.FK_products_in_recipe_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recipe_for_user_recipe" Association="recipeModel.FK_recipe_for_user_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="recipe_for_user" EntitySet="recipe_for_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recipe_for_user_user" Association="recipeModel.FK_recipe_for_user_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="recipe_for_user" EntitySet="recipe_for_user" />
+    </AssociationSet>
+    <FunctionImport Name="add_company">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="add_equipment_in_recipe">
+      <Parameter Name="recipe_id" Mode="In" Type="Int32" />
+      <Parameter Name="equipment_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="add_measure_type">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="add_measurements">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="add_nutritional_value">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="measure_type_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="add_product">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="add_product_in_company">
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="company_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="add_products_in_nutritional_value">
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="nutritional_value_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount_per_100" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="add_products_in_recipe">
+      <Parameter Name="recipe_id" Mode="In" Type="Int32" />
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="measurements_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="add_products_per_measurement">
+      <Parameter Name="measurements_id" Mode="In" Type="Int32" />
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="add_products_per_measuremnts">
+      <Parameter Name="measurements_id" Mode="In" Type="Int32" />
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="add_recipe">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="preparation" Mode="In" Type="String" />
+      <Parameter Name="time" Mode="In" Type="Time" />
+      <Parameter Name="portion" Mode="In" Type="Int32" />
+      <Parameter Name="tips" Mode="In" Type="String" />
+      <Parameter Name="comments" Mode="In" Type="String" />
+      <Parameter Name="photo" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="add_recipe_for_user">
+      <Parameter Name="recipe_id" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="add_special_equipment">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="add_user">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delete_company">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_equipment_in_recipe">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_measure_types">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_measurements">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_nutritional_value">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_product">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_product_in_company">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_product_in_recipe">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_products_in_nutritional_value">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_products_in_recipe">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_recipe">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_recipe_for_user">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_special_equipment">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_user">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(recipeModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(recipeModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="StoredProcedure1">
+      <Parameter Name="measurements_id" Mode="In" Type="Int32" />
+      <Parameter Name="product_id" Mode="In" Type="Int32" />
+      <Parameter Name="amount" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="update_recipe">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="time" Mode="In" Type="Time" />
+      <Parameter Name="portions" Mode="In" Type="Int32" />
+      <Parameter Name="tips" Mode="In" Type="String" />
+      <Parameter Name="comments" Mode="In" Type="String" />
+      <Parameter Name="photo" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="update_special_equipment">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_user">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products_in_company" Relationship="recipeModel.FK_products_in_company_company" FromRole="company" ToRole="products_in_company" />
+  </EntityType>
+  <EntityType Name="equipment_in_recipe">
+    <Key>
+      <PropertyRef Name="recipe_id" />
+      <PropertyRef Name="equipment_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="equipment_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="recipe" Relationship="recipeModel.FK_equipment_in_recipe_recipe" FromRole="equipment_in_recipe" ToRole="recipe" />
+    <NavigationProperty Name="special_equipment" Relationship="recipeModel.FK_equipment_in_recipe_special_equipment" FromRole="equipment_in_recipe" ToRole="special_equipment" />
+  </EntityType>
+  <EntityType Name="measure_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="measure_type1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="measurements" Relationship="recipeModel.FK_measurements_measure_type" FromRole="measure_type" ToRole="measurements" />
+  </EntityType>
+  <EntityType Name="measurement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="measure_type_id" Type="Int32" Nullable="false" />
+    <Property Name="measurement_id" Type="Int32" />
+    <Property Name="amount" Type="Double" />
+    <NavigationProperty Name="measure_type" Relationship="recipeModel.FK_measurements_measure_type" FromRole="measurements" ToRole="measure_type" />
+    <NavigationProperty Name="measurements1" Relationship="recipeModel.FK_measurements_measurements" FromRole="measurements" ToRole="measurements1" />
+    <NavigationProperty Name="measurement1" Relationship="recipeModel.FK_measurements_measurements" FromRole="measurements1" ToRole="measurements" />
+    <NavigationProperty Name="nutritional_value" Relationship="recipeModel.FK_nutritional_value_measurements" FromRole="measurements" ToRole="nutritional_value" />
+    <NavigationProperty Name="products_in_recipe" Relationship="recipeModel.FK_products_in_recipe_measurements" FromRole="measurements" ToRole="products_in_recipe" />
+    <NavigationProperty Name="products_per_measuremnts" Relationship="recipeModel.FK_products_per_measuremnts_measurements" FromRole="measurements" ToRole="products_per_measuremnts" />
+  </EntityType>
+  <EntityType Name="nutritional_value">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="measurements_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="measurement" Relationship="recipeModel.FK_nutritional_value_measurements" FromRole="nutritional_value" ToRole="measurements" />
+    <NavigationProperty Name="products_in_nutritional_value" Relationship="recipeModel.FK_products_in_nutritional_value_nutritional_value" FromRole="nutritional_value" ToRole="products_in_nutritional_value" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products_in_company" Relationship="recipeModel.FK_products_in_company_products" FromRole="products" ToRole="products_in_company" />
+    <NavigationProperty Name="products_per_measuremnts" Relationship="recipeModel.FK_products_per_measuremnts_products" FromRole="products" ToRole="products_per_measuremnts" />
+  </EntityType>
+  <EntityType Name="products_in_company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="company" Relationship="recipeModel.FK_products_in_company_company" FromRole="products_in_company" ToRole="company" />
+    <NavigationProperty Name="product" Relationship="recipeModel.FK_products_in_company_products" FromRole="products_in_company" ToRole="products" />
+    <NavigationProperty Name="products_in_nutritional_value" Relationship="recipeModel.FK_products_in_company_products_in_nutritional_value" FromRole="products_in_company" ToRole="products_in_nutritional_value" />
+    <NavigationProperty Name="user" Relationship="recipeModel.FK_products_in_company_user" FromRole="products_in_company" ToRole="user" />
+    <NavigationProperty Name="products_in_recipe" Relationship="recipeModel.FK_products_in_recipe_products_in_company" FromRole="products_in_company" ToRole="products_in_recipe" />
+  </EntityType>
+  <EntityType Name="products_in_nutritional_value">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="nutritional_value_id" Type="Int32" Nullable="false" />
+    <Property Name="amount_per_100" Type="Double" Nullable="false" />
+    <NavigationProperty Name="nutritional_value" Relationship="recipeModel.FK_products_in_nutritional_value_nutritional_value" FromRole="products_in_nutritional_value" ToRole="nutritional_value" />
+    <NavigationProperty Name="products_in_company" Relationship="recipeModel.FK_products_in_company_products_in_nutritional_value" FromRole="products_in_nutritional_value" ToRole="products_in_company" />
+  </EntityType>
+  <EntityType Name="products_in_recipe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="measurements_id" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Double" Nullable="false" />
+    <NavigationProperty Name="measurement" Relationship="recipeModel.FK_products_in_recipe_measurements" FromRole="products_in_recipe" ToRole="measurements" />
+    <NavigationProperty Name="products_in_company" Relationship="recipeModel.FK_products_in_recipe_products_in_company" FromRole="products_in_recipe" ToRole="products_in_company" />
+    <NavigationProperty Name="recipe" Relationship="recipeModel.FK_products_in_recipe_recipe" FromRole="products_in_recipe" ToRole="recipe" />
+  </EntityType>
+  <EntityType Name="products_per_measuremnts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="measurements_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Double" Nullable="false" />
+    <NavigationProperty Name="measurement" Relationship="recipeModel.FK_products_per_measuremnts_measurements" FromRole="products_per_measuremnts" ToRole="measurements" />
+    <NavigationProperty Name="product" Relationship="recipeModel.FK_products_per_measuremnts_products" FromRole="products_per_measuremnts" ToRole="products" />
+  </EntityType>
+  <EntityType Name="recipe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="preparation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="time" Type="Time" Precision="7" />
+    <Property Name="portions" Type="Int32" />
+    <Property Name="tips" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="equipment_in_recipe" Relationship="recipeModel.FK_equipment_in_recipe_recipe" FromRole="recipe" ToRole="equipment_in_recipe" />
+    <NavigationProperty Name="products_in_recipe" Relationship="recipeModel.FK_products_in_recipe_recipe" FromRole="recipe" ToRole="products_in_recipe" />
+    <NavigationProperty Name="recipe_for_user" Relationship="recipeModel.FK_recipe_for_user_recipe" FromRole="recipe" ToRole="recipe_for_user" />
+  </EntityType>
+  <EntityType Name="recipe_for_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="recipe" Relationship="recipeModel.FK_recipe_for_user_recipe" FromRole="recipe_for_user" ToRole="recipe" />
+    <NavigationProperty Name="user" Relationship="recipeModel.FK_recipe_for_user_user" FromRole="recipe_for_user" ToRole="user" />
+  </EntityType>
+  <EntityType Name="special_equipment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="equipment_in_recipe" Relationship="recipeModel.FK_equipment_in_recipe_special_equipment" FromRole="special_equipment" ToRole="equipment_in_recipe" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="user_or_manager" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="products_in_company" Relationship="recipeModel.FK_products_in_company_user" FromRole="user" ToRole="products_in_company" />
+    <NavigationProperty Name="recipe_for_user" Relationship="recipeModel.FK_recipe_for_user_user" FromRole="user" ToRole="recipe_for_user" />
+  </EntityType>
+  <Association Name="FK_products_in_company_company">
+    <End Role="company" Type="recipeModel.company" Multiplicity="0..1" />
+    <End Role="products_in_company" Type="recipeModel.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_in_recipe_recipe">
+    <End Role="recipe" Type="recipeModel.recipe" Multiplicity="1" />
+    <End Role="equipment_in_recipe" Type="recipeModel.equipment_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment_in_recipe">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_in_recipe_special_equipment">
+    <End Role="special_equipment" Type="recipeModel.special_equipment" Multiplicity="1" />
+    <End Role="equipment_in_recipe" Type="recipeModel.equipment_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="special_equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment_in_recipe">
+        <PropertyRef Name="equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_measurements_measure_type">
+    <End Role="measure_type" Type="recipeModel.measure_type" Multiplicity="1" />
+    <End Role="measurements" Type="recipeModel.measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measure_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="measurements">
+        <PropertyRef Name="measure_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_measurements_measurements">
+    <End Role="measurements" Type="recipeModel.measurement" Multiplicity="0..1" />
+    <End Role="measurements1" Type="recipeModel.measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="measurements1">
+        <PropertyRef Name="measurement_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_nutritional_value_measurements">
+    <End Role="measurements" Type="recipeModel.measurement" Multiplicity="1" />
+    <End Role="nutritional_value" Type="recipeModel.nutritional_value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="nutritional_value">
+        <PropertyRef Name="measurements_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_measurements">
+    <End Role="measurements" Type="recipeModel.measurement" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="recipeModel.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="measurements_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_per_measuremnts_measurements">
+    <End Role="measurements" Type="recipeModel.measurement" Multiplicity="1" />
+    <End Role="products_per_measuremnts" Type="recipeModel.products_per_measuremnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_per_measuremnts">
+        <PropertyRef Name="measurements_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_nutritional_value_nutritional_value">
+    <End Role="nutritional_value" Type="recipeModel.nutritional_value" Multiplicity="1" />
+    <End Role="products_in_nutritional_value" Type="recipeModel.products_in_nutritional_value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nutritional_value">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_nutritional_value">
+        <PropertyRef Name="nutritional_value_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_products">
+    <End Role="products" Type="recipeModel.product" Multiplicity="1" />
+    <End Role="products_in_company" Type="recipeModel.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_per_measuremnts_products">
+    <End Role="products" Type="recipeModel.product" Multiplicity="1" />
+    <End Role="products_per_measuremnts" Type="recipeModel.products_per_measuremnts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_per_measuremnts">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_products_in_nutritional_value">
+    <End Role="products_in_nutritional_value" Type="recipeModel.products_in_nutritional_value" Multiplicity="1" />
+    <End Role="products_in_company" Type="recipeModel.products_in_company" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="products_in_nutritional_value">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_user">
+    <End Role="user" Type="recipeModel.user" Multiplicity="0..1" />
+    <End Role="products_in_company" Type="recipeModel.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_products_in_company">
+    <End Role="products_in_company" Type="recipeModel.products_in_company" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="recipeModel.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products_in_company">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_recipe">
+    <End Role="recipe" Type="recipeModel.recipe" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="recipeModel.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recipe_for_user_recipe">
+    <End Role="recipe" Type="recipeModel.recipe" Multiplicity="1" />
+    <End Role="recipe_for_user" Type="recipeModel.recipe_for_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe_for_user">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recipe_for_user_user">
+    <End Role="user" Type="recipeModel.user" Multiplicity="1" />
+    <End Role="recipe_for_user" Type="recipeModel.recipe_for_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe_for_user">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
