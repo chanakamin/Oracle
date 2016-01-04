@@ -1,7 +1,10 @@
 ﻿angular.module("directives")
-    .directive('addProduct', function () {
+    .directive('newProduct', function () {
     return {
         restrict: 'EA',
+        scope:{
+            show: "="
+        },
         templateUrl: 'Recipe/addProduct',
         controller:'addProductCtrl'
     };

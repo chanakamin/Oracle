@@ -1,0 +1,8 @@
+﻿<ng-form >
+    <select ng-model="productRecipe.product_id" default-option="select product" ng-options="product.id as product.name for product in Products" ></select>
+    <select ng-model="productRecipe.measurements_id" default-option="select measurement" ng-options="measurement.id as measurement.name for measurement in Measurements "></select>
+    <input type="number" min="0" step="0.1" ng-model="productRecipe.amount" name="amount" />
+    <button ng-if="add" type="button" ng-click="submit()">+</button>
+    <button ng-if="!add" type="button" ng-click="submit()">-</button>
+</ng-form>
+      

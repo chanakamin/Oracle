@@ -16,15 +16,17 @@ namespace Oracle.Models
         //=========== create new product from class Product from application classes
         public static product create(Product product)
         {
-            product p = new product();
-            List<int> managers = re.users.Where(u => u.user_or_manager == true)
+            using(var res = new recipeEntities()){
+                product p = new product();
+                List<int> managers = res.users.Where(u => u.user_or_manager == true)
                 .Select(u => u.id).ToList();
-            p.name = product.name;
-            p.description = product.description;
-            p.user_id = product.userId;
-            p.approved = managers.Any(id => id == p.user_id);
-            p.amount_weight_in_volume = product.weight_in_volume;
-            return p;
+              p.name = product.name;
+              p.description = product.description;
+              p.user_id = product.userId;
+              p.approved = managers.Any(id => id == p.user_id);
+              p.amount_weight_in_volume = product.weight_in_volume;
+              return p;
+            }            
         }
 
         // This method set measurements of products, get 2 strings that represent measurements.
@@ -54,6 +56,22 @@ namespace Oracle.Models
                 this.measurements_id_weight = 1;
             }
             return this;
+        }
+
+        // function for serialize
+        public product getSerialize()
+        {
+            return new product() { 
+                id = this.id,
+                name = this.name,
+                description = this.description,
+                measurements_id_volume = this.measurements_id_volume,
+                measurements_id_weight = this.measurements_id_weight,
+                amount_weight_in_volume = this.amount_weight_in_volume,
+                user_id = this.user_id,
+                approved = this.approved,
+                products_in_nutritional_value = re.products_in_nutritional_value.Where(pr=>pr.product_id == this.id).ToList().Select(pr=>pr.getSerialize()).ToList()
+            };
         }
        
     }

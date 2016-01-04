@@ -74,12 +74,12 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="instructions" Type="nvarchar(max)" Nullable="false" />
     <Property Name="portions" Type="int" />
-    <Property Name="preparation" Type="float" />
+    <Property Name="preparation" Type="nvarchar" MaxLength="50" />
     <Property Name="tips" Type="nvarchar(max)" />
-    <Property Name="comments" Type="nvarchar(max)" />
     <Property Name="approved" Type="bit" Nullable="false" />
     <Property Name="photo" Type="image" />
   </EntityType>
@@ -151,7 +151,9 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
     <Property Name="mustable" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_equipment_in_recipe_recipe">
-    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="equipment_in_recipe" Type="Self.equipment_in_recipe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="recipe">
@@ -211,7 +213,9 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_products_in_nutritional_value_products">
-    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="products_in_nutritional_value" Type="Self.products_in_nutritional_value" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="products">
@@ -247,7 +251,9 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_products_in_recipe_recipe">
-    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="products_in_recipe" Type="Self.products_in_recipe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="recipe">

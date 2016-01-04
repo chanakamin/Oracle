@@ -9,6 +9,12 @@ app.config(function ($routeProvider, $locationProvider)
     }).when('/addProduct', {
         templateUrl: 'Recipe/addProduct',
         controller: 'addProductCtrl'
+    }).when('/addRecipeForProduct', {
+        templateUrl: 'Recipe/addRecipeForProduct',
+        controller: 'productRecipeCtrl'
+    }).when('/nutritionalValues', {
+        templateUrl: 'Recipe/nutritionalValues',
+        controller:  'nutritionalsRecipeCtrl'
     });
 });
 // when app runs, all factories are being initialize.

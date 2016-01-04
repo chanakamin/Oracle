@@ -78,6 +78,7 @@
     <EntitySetMapping Name="recipes">
       <EntityTypeMapping TypeName="recipeContext.recipe">
         <MappingFragment StoreEntitySet="recipe">
+          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="preparation" ColumnName="preparation" />
           <ScalarProperty Name="instructions" ColumnName="instructions" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -85,7 +86,6 @@
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="portions" ColumnName="portions" />
           <ScalarProperty Name="tips" ColumnName="tips" />
-          <ScalarProperty Name="comments" ColumnName="comments" />
           <ScalarProperty Name="approved" ColumnName="approved" />
           <ScalarProperty Name="photo" ColumnName="photo" />
         </MappingFragment>

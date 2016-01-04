@@ -6,33 +6,36 @@ angular.module("controllers").controller('addProductCtrl', function ($scope, Pro
         name: "nutritional",
         value: "value",
         amount: "Weight of one mililiter of this product: "
-    };
+    }; 
     // nutritional values from details factory
     var mustNutrition = DetailsFactory.nutritionalsValues();
-
+    var nutritions = [];
     // prepare list of nutritionals values to be nutritionals of product
     angular.forEach(mustNutrition, function (value, key) {
-        mustNutrition[key] = {
+        nutritions[key] = {
             idNutritional: value.id,
             name: value.name,
             amount: 0.0,
             measurement: DetailsFactory.getMeasurement(value.measurements_id)
         };
         if (!angular.isObject(mustNutrition[key].measurement)) {
-            mustNutrition[key].measurement = "";
+            nutritions[key].measurement = "";
         }
         else
-            mustNutrition[key].alias = mustNutrition[key].measurement.alias;
+            nutritions[key].alias = mustNutrition[key].measurement.alias;
     });
-    $scope.mustNutrition = mustNutrition;
+    $scope.mustNutrition = nutritions;
 
     // prepare product object to be added 
-    var p = $scope.product = {
-        name: "",
-        description: "",
-        weight_in_volume: "",
-        mustNutrition: mustNutrition
-    };
+    function createProduct() {
+        return {
+            name: "",
+            description: "",
+            weight_in_volume: "",
+            mustNutrition: nutritions
+        };
+    }
+    var p = $scope.product = createProduct();
 
     // onSubmit function
     $scope.SubmitProduct = function () {
@@ -43,7 +46,10 @@ angular.module("controllers").controller('addProductCtrl', function ($scope, Pro
                 amount:value.amount
             });
         });
-        delete p.mustNutrition;
-        ProductsFactory.addProduct(p, nutritionalsValues);
+        var pr = p;
+        pr.mustNutrition = null;
+        $scope.show = false;
+        ProductsFactory.addProduct(pr, nutritionalsValues);
+        $scope.product = p = createProduct(); debugger;
     };   
 });

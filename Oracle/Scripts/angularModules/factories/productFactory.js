@@ -33,18 +33,20 @@
                 addProduct: product,
                 nutritionals: nutritionals
             };
-            resourcesFactory.addResource('addProduct',config)
-                    .success(function (data) {
-                        var p = (angular.fromJson(data));
+            resourcesFactory.addResource('addProduct', config)
+                    .then(function (data) {
+                        debugger;
+                        var p = angular.fromJson(data).data.p;
                         product.id = p.id;
                         product.volume = p.measurements_id_volume;
                         product.weight = p.measurements_id_weight;
                         products.push(product);
                         console.log("add product succeed");
-                    })
-                    .error(function (e) {
-                        console.log("add product fail");
                     });
+                    //});
+                    //.error(function (e) {
+                    //    console.log("add product fail");
+                    //});
         };
         var initProductsFromDb = function () {
             resourcesFactory.initResource('getProduct', 'products')

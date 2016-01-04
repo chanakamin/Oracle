@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Oracle.Models;
+using System.Data;
 
 namespace Oracle.Controllers
 {
@@ -31,17 +32,19 @@ namespace Oracle.Controllers
         {
             List<nutritional_value_details> nutritionalDetails = recipes.nutritional_value_details.ToList();
             List<product> products = recipes.products.ToList();
+            products = products.Select(p => p.getSerialize()).ToList();
             var prod = products.Select(p => new { product = p, nutritional = nutritionalDetails.Where(nv => nv.product_id == p.id).ToList() }).ToList();            
             return Json( prod , JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult getDetails()
-        {           
+        {
+            var nvv = recipes.nutritional_value.Where(nv => nv.mustable).ToList();
             return Json(
                 new {measureTypes = recipes.measure_type,
                      measurements = recipes.measurement_with_type,
-                     nutritionalValues = recipes.nutritional_value.Where(nv => nv.mustable),
+                     nutritionalValues = nvv.Select(nv=>nv.getSerialize()).ToList(),
                     // recipes = recipes.recipes,
                      userId = Session["userId"]},
                 JsonRequestBehavior.AllowGet
@@ -52,27 +55,31 @@ namespace Oracle.Controllers
         public JsonResult getRecipes()
         { 
             List<recipe> recipe = recipes.recipes.ToList();
-           // var specialEquipments = recipes.equipment_in_recipe.Select(e => new { recipeId = e.recipe_id, equipment = e.special_equipment1 }).ToList();
-            List<product> prod = recipes.products.ToList();
-            var resp = recipe.Select(r => new
-            {   recipe = r,
-               // specialEquipments = specialEquipments.Where(e => e.recipeId == r.id).Select(e => e.equipment).ToArray(),
-                prodId = prod.Where(p => p.id == r.id).Select(p => p.id).ToArray()
-            }).ToList();
-            return Json(resp,JsonRequestBehavior.AllowGet);
+            recipe = recipe.Select(r => r.getSerialize()).ToList();
+            
+            return Json(recipe,JsonRequestBehavior.AllowGet);
         }
         // post request - add to db
         [HttpPost]
         public JsonResult addProduct(Product addProduct, NutritonalValue_for_product[] nutritionals, string Volume = null, string Weight = null)
         {
             product p = addProduct.getEntity();
-            p.setMeasurements(Volume, Weight);
-            
+            var pr = recipes.Entry(p);
+            pr.State = EntityState.Added;
+            pr.Entity.setMeasurements(Volume, Weight);
             List<products_in_nutritional_value> nutritionalsVal = nutritionals.Select(n => n.getEntity()).ToList();
-            p.products_in_nutritional_value = nutritionalsVal;
-            recipes.products.Add(p);
+            pr.Entity.products_in_nutritional_value = nutritionalsVal;           
+            return Json(new { success = true, p = p.getSerialize() });
+        }
+        [HttpPost]
+        public JsonResult addRecipe(recipe recipe,equipment_in_recipe[] equipments, products_in_recipe[] products_in_recipe)
+        {               
+            recipe.equipment_in_recipe =  equipments;
+            recipe.products_in_recipe = products_in_recipe;
+            recipe.isApproved();
+            recipes.recipes.Add(recipe);
             recipes.SaveChanges();
-            return Json(new { success = true });
+            return Json(new { success = true, recipe = recipe.getSerialize() });            
         }
 
         public ActionResult Index()

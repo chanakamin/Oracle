@@ -60,10 +60,3 @@ textarea {
     display: none;
 }
 
-/*Temporaries styles */
-#addRecipe {
-    width: 60%;
-}
-#addProduct {
-    width: 40%;
-}

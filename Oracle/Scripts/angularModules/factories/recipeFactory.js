@@ -4,13 +4,13 @@
         var recipes = [];
         // inner functions in factory
         //function to create new recipe
-        function Recipe(name, user_id, preparation, time, portions, tips, comments) {
+        function Recipe(name ,description,  preparation, portions, instructions, tips) {
             this.name = name;
-            this.user_id = user_id;
+            this.description = description;
+            this.user_id = DetailsFactory.userId();
             this.preparation = preparation;
             this.time = time;
             this.tips = tips;
-            this.commnts = comments;
         }
 
         // function to orginized list of recipes, get list from ajax request
@@ -32,6 +32,22 @@
                         console.log('init recipes failed. ' + e);
                     });
         };
+        // function to add recipe to db
+        function addRecipeToDb(recipe) {
+            var config = {
+                recipe: recipe,
+                equipments: recipe.equipments,
+                products_in_recipe: recipe.products_in_recipe
+            };
+            recipe.equipments = recipe.products_in_recipe = null;
+            resourcesFactory.addResource('addRecipe', config)
+                .then(function (data) {
+                    debugger;
+                    var r = data.data.recipe;
+                    recipe.id = r.id;
+                    recipes.push(r);
+                });
+        }
 
         // Function for use with the factory
         return {
@@ -52,10 +68,23 @@
                 }                    
                 return recipes;
             },
+            // function to get recipe upon id
+            getRecipe: function (id) {
+                return recipes.filter(function (r) {
+                    return r.id === id;
+                });
+            },
             // function to create recipe, and add it to list
             createRecipe: function (name, user_id, preparation, time, portions, tips, comments, photo) {
                 var r = new Recipe(name, user_id, preparation, time, portions, tips, comments, photo);
             },
+            addRecipe: function (recipe) {
+                var userId = DetailsFactory.userId();
+                if (userId > 0) {
+                    recipe.user_id = userId;
+                    addRecipeToDb(recipe);
+                }
+            }
         };
     });
 })();

@@ -5,23 +5,42 @@
 <script type="text/javascript">
    
 </script>
-<h2>Index</h2>
 
 <div ng-app="app" ng-controller="indexCtrl">
-    {{ 1+1}}
-    {{ msg }}
-    {{ "angular " + "is working" }}
-    <ul>
-        <li ng-repeat="product in products">{{product.name}}</li>
-    </ul>
-    <button ng-click="initList()">init list</button>
-    <br />
-    <a href="" ng-click="link('newRecipe')">New Recipe</a>
-    <a href="" ng-click="link('findRecipe')">Find Recipe</a>
-    <a href="" ng-click="link('addProduct')">add product</a>
-    <div ng-view>
+    <div class=" container-fluid">
+    <div class="row" ng-view="">
+       
+     </div>
 
+    <div class="row">
+        <!--the main menu-->
+        <div class="col-xs-12" >
+            <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container-fluid">
+                    <div class="navbar-header">  
+                        <a class="navbar-brand" href="#">Welcome</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav ">
+                            <li class="dropup" >   
+                                <a href="" ng-click="link('newRecipe')" class="navbar-brand">New Recipe</a>                               
+                            </li>
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Sign In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
     </div>
+    </div>
+    <br />
+    
+   @* <a href="" ng-click="link('nutritionalValues')">nutritional Values</a>
+    <a href="" ng-click="link('addProduct')">add product</a>*@
+    
 </div>
 
 

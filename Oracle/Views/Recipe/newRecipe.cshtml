@@ -1,77 +1,79 @@
 ﻿@model Oracle.Models.recipe
-
-<form name="addRecipe" id="addRecipe" ng-submit="SubmitRecipe()">
-    <fieldset>
-        <legend>recipe</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.name)
-            @Html.ValidationMessageFor(model => model.name)
+        <!--a place for tips-->
+        <div class="col-xs-2" >
+            <div class="well">
+               
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user_id)
+        <!--a place for text-->
+<div class="col-xs-7">
+    <form class="form-group" name="addRecipe" id="addRecipe" ng-submit="SubmitRecipe()">
+        <div class="input-group-lg">
+            <label for="Recipe Name" class="sr-only">Recipe Name</label>
+            <input id="Recipe Name" type="text" name="title" ng-model="recipe.name" required="required" class="form-control" placeholder="Recipe Name" aria-labelledby="Recipe Name" />
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user_id)
-            @Html.ValidationMessageFor(model => model.user_id)
+        <div class="input-group-sm">
+            <label for="Description" class="sr-only">Description</label>
+            <input id="Description" type="text" name="description" ng-model="recipe.description" class="form-control" placeholder="{{ texts.recipe.description }}" aria-labelledby="Description" />
         </div>
+        <div class="input-group">
+            <label for="Preperation Time" class="sr-only">Preperation Time</label>
+            <input id="Preperation Time" type="text" class="form-control" name="preparation" ng-model="recipe.preparation" placeholder="{{ texts.recipe.preparation }}" aria-labelledby="Preperation Time" />
+        </div>
+        <div class="input-group">
+            <label for="Servings" class="sr-only">Servings</label>
+            <input id="Servings" type="number" class="form-control" name="portions" placeholder="{{ texts.recipe.portions }}" ng-model="recipe.portions" aria-labelledby="Servings" />
+        </div>
+        <div class="input-group">
+            <div ng-repeat="special in recipe.equipments | filter:nonEmpty ">
+                <ng-form>
+                        <input type="text" name="{{ 'special_' + $index }}" ng-model="special.equipment" />                
+                    </ng-form>
+                <div>
+                    <input type="text" placeholder="{{texts.recipe.equipment}}" ng-model="newEquipment" />
+                    <button type="button" ng-click="addEquipment()">add equipment</button>
+                </div>
+            </div>
+        </div>
+        <label for="Ingredients" class=" sr-only">Ingredients</label>
+        <div id="Ingredients" aria-labelledby="Ingredients">
+            <div class="input-group">
+                <label for="AddIngredient" class="sr-only">Add Ingredient</label>
+                @*<div id="AddIngredient" aria-labelledby="Add Ingredient" class="input-group-btn">
+                                <button type="button" class="btn btn-default">
+                                    <span class=" glyphicon glyphicon-plus"></span>
+                                </button>                                
+                            </div>*@
+                <div ng-repeat="product in recipe.products ">
+                    <exproduct-recipe product="product" products="recipe.products"></exproduct-recipe>
+                </div>
+                <label for="Ingredient" class="sr-only">Ingredient</label>
+                <addproduct-recipe recipe-products="recipe.products"></addproduct-recipe>
+                @*<select id="Ingredient" class="form-control" placeholder="Ingredient" aria-labelledby="Ingredient"></select>*@
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.preparation)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.preparation)
-            @Html.ValidationMessageFor(model => model.preparation)
+        <div class="input-group">
+            <label for="Instructions" class="sr-only">Instructions</label>
+            <textarea id="Instructions" class="form-control" name="instructions" ng-model="recipe.instructions" placeholder="{{ texts.recipe.instructions }}" aria-labelledby="Instructions"></textarea>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.time)
+        <div class="input-group">
+            <textarea name="tips" ng-model="recipe.tips" placeholder="{{ texts.recipe.tips }}"></textarea>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.time)
-            @Html.ValidationMessageFor(model => model.time)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.portions)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.portions)
-            @Html.ValidationMessageFor(model => model.portions)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.tips)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.tips)
-            @Html.ValidationMessageFor(model => model.tips)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.comments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.comments)
-            @Html.ValidationMessageFor(model => model.comments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.approved)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.approved)
-            @Html.ValidationMessageFor(model => model.approved)
-        </div>
-        
-        <p>
+         <p>
             <input type="submit" value="Create" />
         </p>
-    </fieldset>
-</form>
- <button ng-click="produc.add()"> add product </button>
- <div add-product="" ng-show="produc.show"></div>
+    </form>
+
+    <button type="button" ng-click="AddProduct()" > add product </button>
+
+    </div>
+        <!--this is a disapearing menu (how to do? toggle?--check.)-->
+        <div class="col-xs-3" >
+           <div new-product="" ng-show="showProduct" show="showProduct"></div>
+        </div>
+
+
+
+ 

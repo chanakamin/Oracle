@@ -138,6 +138,7 @@
     <Compile Include="Models\application\NutritonalValue_for_product.cs" />
     <Compile Include="Models\application\Product.cs" />
     <Compile Include="Models\application\Produ.cs" />
+    <Compile Include="Models\application\Recipe.cs" />
     <Compile Include="Models\equipment_in_recipe.cs">
       <DependentUpon>Recipes.tt</DependentUpon>
     </Compile>
@@ -159,6 +160,7 @@
     <Compile Include="Models\nutritional_value_details.cs">
       <DependentUpon>Recipes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partialModelClasses\nutritional_value.cs" />
     <Compile Include="Models\partialModelClasses\product.cs" />
     <Compile Include="Models\partialModelClasses\product_in_nutritional_value.cs" />
     <Compile Include="Models\partialModelClasses\recipe.cs" />
@@ -212,7 +214,14 @@
     <Content Include="App_Data\recipe_log.ldf">
       <DependentUpon>recipe.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Custom.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\themes\base\images\tachush13.jpg" />
+    <Content Include="Content\themes\base\images\tachush18.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -267,6 +276,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\images\tachush13.jpg" />
+    <Content Include="Content\themes\images\tachush18.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angularModules\app.js" />
@@ -274,9 +285,13 @@
     <Content Include="Scripts\angularModules\controllers\1ctrlModule.js" />
     <Content Include="Scripts\angularModules\controllers\index.js" />
     <Content Include="Scripts\angularModules\controllers\newRecipeCtrl.js" />
+    <Content Include="Scripts\angularModules\controllers\nutritionalsRecipe.js" />
+    <Content Include="Scripts\angularModules\controllers\productRecipe.js" />
     <Content Include="Scripts\angularModules\controllers\showRecipe.js" />
     <Content Include="Scripts\angularModules\directives\directModule.js" />
     <Content Include="Scripts\angularModules\directives\productDirective.js" />
+    <Content Include="Scripts\angularModules\directives\productRecipe.js" />
+    <Content Include="Scripts\angularModules\directives\selectDirective.js" />
     <Content Include="Scripts\angularModules\factories\detailsFactory.js" />
     <Content Include="Scripts\angularModules\factories\productFactory.js" />
     <Content Include="Scripts\angularModules\factories\1mainFactory.js" />
@@ -306,6 +321,10 @@
       <DependentUpon>Recipes.edmx</DependentUpon>
       <LastGenOutput>Recipes.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.min.js" />
@@ -316,14 +335,17 @@
     <Content Include="Scripts\jqueryval\jquery.validate.min.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery\bootstrap.min.js" />
+    <Content Include="Scripts\jquery\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery\jquery-1.8.2.min.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
     <Content Include="Scripts\plugin\inflection.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\AddRecipe.html" />
     <Content Include="Views\Recipe\Partials\newRecipe.html" />
+    <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -342,6 +364,8 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Recipe\addProduct.cshtml" />
     <Content Include="Views\Recipe\createRecipe.cshtml" />
+    <Content Include="Views\Recipe\addRecipeForProduct.cshtml" />
+    <Content Include="Views\Recipe\nutritionalValues.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

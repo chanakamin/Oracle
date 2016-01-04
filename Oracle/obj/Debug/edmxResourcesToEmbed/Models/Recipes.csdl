@@ -98,14 +98,14 @@
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="portions" Type="Int32" />
     <Property Name="tips" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="approved" Type="Boolean" Nullable="false" />
     <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="equipment_in_recipe" Relationship="Self.FK_equipment_in_recipe_recipe" FromRole="recipe" ToRole="equipment_in_recipe" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_recipe" FromRole="recipe" ToRole="products_in_recipe" />
     <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_recipe" FromRole="recipe" ToRole="recipe_for_user" />
     <Property Name="instructions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="preparation" Type="Double" />
+    <Property Name="preparation" Type="String" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="recipe_for_user">
     <Key>
@@ -141,7 +141,9 @@
     <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_user" FromRole="user" ToRole="recipe_for_user" />
   </EntityType>
   <Association Name="FK_equipment_in_recipe_recipe">
-    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="equipment_in_recipe" Type="Self.equipment_in_recipe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="recipe">
@@ -273,7 +275,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_products_in_recipe_recipe">
-    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="products_in_recipe" Type="Self.products_in_recipe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="recipe">

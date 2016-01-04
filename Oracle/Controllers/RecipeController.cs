@@ -74,6 +74,14 @@ namespace Oracle.Controllers
         {
             return PartialView();
         }
+        public ActionResult addRecipeForProduct()
+        {
+            return PartialView();
+        }
+        public ActionResult nutritionalValues()
+        {
+            return PartialView();
+        }
 
     }
 }

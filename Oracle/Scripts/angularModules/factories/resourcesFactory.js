@@ -25,7 +25,7 @@
                 return resources[resource];
             },
             addResource: function (action, config) {
-                return $http.post("Data/" + action)
+                return $http.post("Data/" + action, config)
                     .then(function (data) {
                         return data;
                     });
