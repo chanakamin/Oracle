@@ -4,10 +4,11 @@
         var products = [];
 
         // create new product object
-        function Product(productName,description,weight_in_volume){
+        function Product(productName,description,weight_in_volume,measure){
             this.name = productName;
             this.description;
             this.weight_in_volume = weight_in_volume;
+            this.nutritional_per = measure;
         }
 
         // orginized list of products from server call
@@ -77,11 +78,21 @@
                 }
                 return products;                    
             },
+            getProduct: function (id) {
+                var p = products.filter(function (p) {
+                    return p.id === id;
+                });
+                if (p.length == 0)
+                    p = products[0];
+                else
+                    p = p[0];
+                return p;
+            },
             getLength: function () {
                 return products.length;
             },
             //add product to list
-            createProduct: function (productName,description,weight,volume,amount) {
+            createProduct: function (productName,description,weight,volume,amount,measure) {
                 var product = new Product(productName,description,amount);
                 products.push(product);
                 addProductToDb(product, volume, weight);

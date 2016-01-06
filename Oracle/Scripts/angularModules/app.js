@@ -1,9 +1,11 @@
 ﻿var app = angular.module('app', ['controllers', 'ngRoute', 'factoryModule', ]);
 app.config(function ($routeProvider, $locationProvider)
-{
-    'use strict'
+{    'use strict'
     $routeProvider
-    .when('/newRecipe', {
+    .when('/allRecipes', {
+        templateUrl: 'Recipe/allRecipes',
+        controller: 'recipesListCtrl'
+    }).when('/newRecipe', {
         templateUrl: 'Recipe/newRecipe',
         controller: 'newRecipeCtrl'
     }).when('/addProduct', {
@@ -14,7 +16,10 @@ app.config(function ($routeProvider, $locationProvider)
         controller: 'productRecipeCtrl'
     }).when('/nutritionalValues', {
         templateUrl: 'Recipe/nutritionalValues',
-        controller:  'nutritionalsRecipeCtrl'
+        controller: 'nutritionalsRecipeCtrl'
+    }).when('/showRecipe/:id', {
+        templateUrl: 'Recipe/showRecipe/0',
+        controller: 'showRecipeCtrl'
     });
 });
 // when app runs, all factories are being initialize.

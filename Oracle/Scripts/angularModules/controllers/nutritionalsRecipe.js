@@ -1,8 +1,7 @@
 ﻿(function () {
     var ctrl = function ($scope, DetailsFactory) {
-        var r = $scope.recipe;
-        var recipeProducts = r.products_in_recipe;
-
+        debugger;
+        $scope.nut = DetailsFactory.calcNutrition($scope.products);
     };
-    angular.module('controllers').controller('nutritionalsRecipeCtrl', ctrl);
+    angular.module('controllers').controller('nutritionalRecipeCtrl', ['$scope', 'DetailsFactory', ctrl]);
 })();

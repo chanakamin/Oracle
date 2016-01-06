@@ -1,6 +1,7 @@
 ﻿(function () {
     /* Fuctory to save all functions of recipe */
-    angular.module('factoryModule').factory('RecipesFactory', function ($http, resourcesFactory, DetailsFactory) {
+    angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory) {
+        var current = 0;
         var recipes = [];
         // inner functions in factory
         //function to create new recipe
@@ -42,10 +43,10 @@
             recipe.equipments = recipe.products_in_recipe = null;
             resourcesFactory.addResource('addRecipe', config)
                 .then(function (data) {
-                    debugger;
                     var r = data.data.recipe;
                     recipe.id = r.id;
                     recipes.push(r);
+                    $location.path('/showRecipe/' + r.id);
                 });
         }
 
@@ -70,9 +71,14 @@
             },
             // function to get recipe upon id
             getRecipe: function (id) {
-                return recipes.filter(function (r) {
+                var r = recipes.filter(function (r) {
                     return r.id === id;
                 });
+                if (r.length == 0)
+                    r = recipes[0];
+                else
+                    r = r[0];
+                return r;
             },
             // function to create recipe, and add it to list
             createRecipe: function (name, user_id, preparation, time, portions, tips, comments, photo) {
@@ -84,6 +90,25 @@
                     recipe.user_id = userId;
                     addRecipeToDb(recipe);
                 }
+            },
+            setCurrent: function (cur) {
+                current = cur;
+            },
+            getCurrentRecipe: function () {
+                var l = $location.path().split('/');
+                l = l.pop();
+                if (!isNaN(parseInt(l)))
+                    current = parseInt(l);
+                if (current == 0)
+                    current = recipes[0].id;
+                return this.getRecipe(current);
+            },
+            // set product & measurement for any product in recipe
+            setObjects: function (r) {
+                angular.forEach(r.products, function (val) {
+                    val.product = ProductsFactory.getProduct(val.product_id);
+                    val.measurement = DetailsFactory.getMeasurement(val.measurements_id);
+                })
             }
         };
     });

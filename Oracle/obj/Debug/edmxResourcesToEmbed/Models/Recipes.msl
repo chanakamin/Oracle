@@ -43,6 +43,7 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="recipeContext.product">
         <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />

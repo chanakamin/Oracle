@@ -16,14 +16,14 @@ namespace Oracle.Models
         {
             get
             {
-                return re.equipment_in_recipe.Where(eq => eq.recipe_id == this.id).Select(eq => eq.special_equipment1).ToList();
+                return re.equipment_in_recipe.Where(eq => eq.recipe_id == this.id).Select(eq => eq.special_equipment).ToList();
             }
         }
         public List<products_in_recipe> products
         {
             get
             {
-                return re.products_in_recipe.Where(pr => pr.recipe_id == this.id).ToList();
+                return re.products_in_recipe.Where(pr => pr.recipe_id == this.id).ToList().Select(pr=>pr.getSerialize()).ToList();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Oracle.Models
         }
         public recipe getSerialize()
         {
-            recipe recipe = new recipe() {
+            recipe r = new recipe() {
                 id = this.id,
                 name = this.name,
                 portions = this.portions,
@@ -46,7 +46,7 @@ namespace Oracle.Models
                 preparation = this.preparation,
                 description = this.description
             };
-            return recipe;
+            return r;
         }
        
     }

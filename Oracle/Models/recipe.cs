@@ -23,14 +23,14 @@ namespace Oracle.Models
     
         public int id { get; set; }
         public string name { get; set; }
+        public string description { get; set; }
         public int user_id { get; set; }
+        public string instructions { get; set; }
         public Nullable<int> portions { get; set; }
+        public string preparation { get; set; }
         public string tips { get; set; }
         public bool approved { get; set; }
         public byte[] photo { get; set; }
-        public string instructions { get; set; }
-        public string preparation { get; set; }
-        public string description { get; set; }
     
         public virtual ICollection<equipment_in_recipe> equipment_in_recipe { get; set; }
         public virtual ICollection<products_in_recipe> products_in_recipe { get; set; }

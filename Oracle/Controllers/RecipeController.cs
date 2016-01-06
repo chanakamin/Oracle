@@ -55,8 +55,7 @@ namespace Oracle.Controllers
 
         public ActionResult Index()
         {           
-            Session.Add("userId",5);               
-            ViewBag.t = "lll" ;
+            Session.Add("userId",5);    
             recipe r = new recipe();
             return View();
         }
@@ -79,6 +78,14 @@ namespace Oracle.Controllers
             return PartialView();
         }
         public ActionResult nutritionalValues()
+        {
+            return PartialView();
+        }
+        public ActionResult allRecipes()
+        {
+            return PartialView();
+        }
+        public ActionResult showRecipe(int id)
         {
             return PartialView();
         }

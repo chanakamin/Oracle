@@ -16,7 +16,7 @@ namespace Oracle.Models
     {
         public int id { get; set; }
         public int recipe_id { get; set; }
-        public string special_equipment1 { get; set; }
+        public string special_equipment { get; set; }
     
         public virtual recipe recipe { get; set; }
     }

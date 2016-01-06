@@ -42,7 +42,7 @@ namespace Oracle.Controllers
         {
             var nvv = recipes.nutritional_value.Where(nv => nv.mustable).ToList();
             return Json(
-                new {measureTypes = recipes.measure_type,
+                new {measureTypes = recipes.measure_type.ToList().Select(t=>t.getSerialize()).ToList(),
                      measurements = recipes.measurement_with_type,
                      nutritionalValues = nvv.Select(nv=>nv.getSerialize()).ToList(),
                     // recipes = recipes.recipes,
@@ -68,17 +68,26 @@ namespace Oracle.Controllers
             pr.State = EntityState.Added;
             pr.Entity.setMeasurements(Volume, Weight);
             List<products_in_nutritional_value> nutritionalsVal = nutritionals.Select(n => n.getEntity()).ToList();
-            pr.Entity.products_in_nutritional_value = nutritionalsVal;           
+            pr.Entity.products_in_nutritional_value = nutritionalsVal;
+            recipes.SaveChanges();
             return Json(new { success = true, p = p.getSerialize() });
         }
         [HttpPost]
         public JsonResult addRecipe(recipe recipe,equipment_in_recipe[] equipments, products_in_recipe[] products_in_recipe)
-        {               
-            recipe.equipment_in_recipe =  equipments;
-            recipe.products_in_recipe = products_in_recipe;
-            recipe.isApproved();
-            recipes.recipes.Add(recipe);
+        {
+            var r = recipes.Entry(recipe);
+            r.State = EntityState.Added;
+            r.Entity.equipment_in_recipe = equipments;
             recipes.SaveChanges();
+            r.Entity.isApproved();
+            recipes.SaveChanges();
+            r.Entity.products_in_recipe = products_in_recipe;
+            recipes.SaveChanges();
+            //recipe.equipment_in_recipe =  equipments;
+            //recipe.products_in_recipe = products_in_recipe;
+            //recipe.isApproved();
+            //recipes.recipes.Add(recipe);
+            //recipes.SaveChanges();
             return Json(new { success = true, recipe = recipe.getSerialize() });            
         }
 

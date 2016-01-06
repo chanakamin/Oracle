@@ -138,78 +138,75 @@
     <Compile Include="Models\application\NutritonalValue_for_product.cs" />
     <Compile Include="Models\application\Product.cs" />
     <Compile Include="Models\application\Produ.cs" />
-    <Compile Include="Models\application\Recipe.cs" />
     <Compile Include="Models\equipment_in_recipe.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\measurement.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\measurement_with_type.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\measure_type.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\nutritionalForProduct_Result.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\nutritional_value.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\nutritional_value_details.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partialModelClasses\measurements.cs" />
+    <Compile Include="Models\partialModelClasses\measure_type.cs" />
     <Compile Include="Models\partialModelClasses\nutritional_value.cs" />
     <Compile Include="Models\partialModelClasses\product.cs" />
+    <Compile Include="Models\partialModelClasses\products_in_recipe.cs" />
     <Compile Include="Models\partialModelClasses\product_in_nutritional_value.cs" />
     <Compile Include="Models\partialModelClasses\recipe.cs" />
     <Compile Include="Models\product.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\products_in_nutritional_value.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\products_in_recipe.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Recipe.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recipe.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\recipe.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Recipes.Context.cs">
+    <Compile Include="Models\Recipe.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Recipes.Context.tt</DependentUpon>
+      <DependentUpon>Recipe.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Recipes.cs">
+    <Compile Include="Models\Recipe1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Recipes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Recipes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Recipes.edmx</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\recipe_for_user.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
-      <DependentUpon>Recipes.tt</DependentUpon>
+      <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Oracle-תשעוא%27ח171330.mdf" />
+    <Content Include="App_Data\aspnet-Oracle-תשעוא%27ח171330_log.ldf">
+      <DependentUpon>aspnet-Oracle-תשעוא%27ח171330.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\recipe.mdf" />
     <Content Include="App_Data\recipe_log.ldf">
       <DependentUpon>recipe.mdf</DependentUpon>
@@ -285,10 +282,13 @@
     <Content Include="Scripts\angularModules\controllers\1ctrlModule.js" />
     <Content Include="Scripts\angularModules\controllers\index.js" />
     <Content Include="Scripts\angularModules\controllers\newRecipeCtrl.js" />
+    <Content Include="Scripts\angularModules\controllers\nutritionalRecipeCtrl.js" />
     <Content Include="Scripts\angularModules\controllers\nutritionalsRecipe.js" />
     <Content Include="Scripts\angularModules\controllers\productRecipe.js" />
+    <Content Include="Scripts\angularModules\controllers\reciesList.js" />
     <Content Include="Scripts\angularModules\controllers\showRecipe.js" />
     <Content Include="Scripts\angularModules\directives\directModule.js" />
+    <Content Include="Scripts\angularModules\directives\nutritionalValues.js" />
     <Content Include="Scripts\angularModules\directives\productDirective.js" />
     <Content Include="Scripts\angularModules\directives\productRecipe.js" />
     <Content Include="Scripts\angularModules\directives\selectDirective.js" />
@@ -304,27 +304,27 @@
     <Content Include="Scripts\angularSrc\angular.js" />
     <Content Include="Scripts\angularSrc\angular.min.js" />
     <Content Include="Scripts\angularModules\factories\resourcesFactory.js" />
-    <EntityDeploy Include="Models\Recipes.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Recipes.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Recipes.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Recipes.edmx</DependentUpon>
-      <LastGenOutput>Recipes.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Recipes.edmx.diagram">
-      <DependentUpon>Recipes.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Recipes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Recipes.edmx</DependentUpon>
-      <LastGenOutput>Recipes.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\Recipe.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Recipe.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Recipe.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Recipe.edmx</DependentUpon>
+      <LastGenOutput>Recipe.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Recipe.edmx.diagram">
+      <DependentUpon>Recipe.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Recipe.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Recipe.edmx</DependentUpon>
+      <LastGenOutput>Recipe1.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.min.js" />
@@ -343,8 +343,8 @@
     <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
     <Content Include="Scripts\plugin\inflection.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\AddRecipe.html" />
-    <Content Include="Views\Recipe\Partials\newRecipe.html" />
+    <Content Include="Views\Recipe\allRecipes.cshtml" />
+    <Content Include="Views\Recipe\showRecipe.cshtml" />
     <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -15768,7 +15768,7 @@ function $RootScopeProvider() {
        * ```
        *
        */
-      $digest: function() {
+      $digest: function () {          
         var watch, value, last,
             watchers,
             length,

@@ -38,7 +38,7 @@
     $scope.SubmitRecipe = function () {
         angular.forEach(r.equipments, function (val, key) {
             r.equipments[key] = {
-                special_equipment1: val.equipment
+                special_equipment: val.equipment
             };
         });
         r.products_in_recipe = r.products;

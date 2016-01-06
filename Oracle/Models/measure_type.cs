@@ -17,11 +17,13 @@ namespace Oracle.Models
         public measure_type()
         {
             this.measurements = new HashSet<measurement>();
+            this.products = new HashSet<product>();
         }
     
         public int id { get; set; }
         public string measure_type1 { get; set; }
     
         public virtual ICollection<measurement> measurements { get; set; }
+        public virtual ICollection<product> products { get; set; }
     }
 }

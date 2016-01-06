@@ -17,6 +17,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="measure_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="measurements" Relationship="Self.FK_measurements_measure_type" FromRole="measure_type" ToRole="measurements" />
+    <NavigationProperty Name="products" Relationship="recipeContext.FK_products_measure_type" FromRole="measure_type" ToRole="product" />
   </EntityType>
   <EntityType Name="measurement">
     <Key>
@@ -64,6 +65,8 @@
     <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_products" FromRole="products" ToRole="products_in_nutritional_value" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products" FromRole="products" ToRole="products_in_recipe" />
     <NavigationProperty Name="user" Relationship="Self.FK_products_user" FromRole="products" ToRole="user" />
+    <Property Name="nutritional_per" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="measure_type" Relationship="recipeContext.FK_products_measure_type" FromRole="product" ToRole="measure_type" />
   </EntityType>
   <EntityType Name="products_in_nutritional_value">
     <Key>
@@ -104,7 +107,7 @@
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_recipe" FromRole="recipe" ToRole="products_in_recipe" />
     <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_recipe" FromRole="recipe" ToRole="recipe_for_user" />
     <Property Name="instructions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="preparation" Type="String" />
+    <Property Name="preparation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="recipe_for_user">
@@ -548,6 +551,10 @@
     <FunctionImport Name="nutritionalForProduct" ReturnType="Collection(recipeContext.nutritionalForProduct_Result)">
       <Parameter Name="product_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <AssociationSet Name="FK_products_measure_type" Association="recipeContext.FK_products_measure_type">
+      <End Role="measure_type" EntitySet="measure_type" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -604,4 +611,16 @@
     <Property Type="String" Name="measurementName" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="alias" Nullable="true" MaxLength="10" />
   </ComplexType>
+  <Association Name="FK_products_measure_type">
+    <End Type="recipeContext.measure_type" Role="measure_type" Multiplicity="1" />
+    <End Type="recipeContext.product" Role="product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measure_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="nutritional_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

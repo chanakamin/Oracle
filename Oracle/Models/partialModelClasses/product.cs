@@ -25,6 +25,7 @@ namespace Oracle.Models
               p.user_id = product.userId;
               p.approved = managers.Any(id => id == p.user_id);
               p.amount_weight_in_volume = product.weight_in_volume;
+              p.nutritional_per = product.nutritional_per;
               return p;
             }            
         }
@@ -61,6 +62,7 @@ namespace Oracle.Models
         // function for serialize
         public product getSerialize()
         {
+            var n = re.measure_type.Where(t => t.id == this.nutritional_per).First();
             return new product() { 
                 id = this.id,
                 name = this.name,
@@ -68,6 +70,7 @@ namespace Oracle.Models
                 measurements_id_volume = this.measurements_id_volume,
                 measurements_id_weight = this.measurements_id_weight,
                 amount_weight_in_volume = this.amount_weight_in_volume,
+                measure_type = re.measure_type.Where(t=>t.id == this.nutritional_per).First().getSerialize(),
                 user_id = this.user_id,
                 approved = this.approved,
                 products_in_nutritional_value = re.products_in_nutritional_value.Where(pr=>pr.product_id == this.id).ToList().Select(pr=>pr.getSerialize()).ToList()

@@ -25,41 +25,32 @@
             <label for="Servings" class="sr-only">Servings</label>
             <input id="Servings" type="number" class="form-control" name="portions" placeholder="{{ texts.recipe.portions }}" ng-model="recipe.portions" aria-labelledby="Servings" />
         </div>
-        <div class="input-group">
-            <div ng-repeat="special in recipe.equipments | filter:nonEmpty ">
-                <ng-form>
-                        <input type="text" name="{{ 'special_' + $index }}" ng-model="special.equipment" />                
-                    </ng-form>
-                <div>
-                    <input type="text" placeholder="{{texts.recipe.equipment}}" ng-model="newEquipment" />
-                    <button type="button" ng-click="addEquipment()">add equipment</button>
-                </div>
-            </div>
-        </div>
         <label for="Ingredients" class=" sr-only">Ingredients</label>
-        <div id="Ingredients" aria-labelledby="Ingredients">
-            <div class="input-group">
-                <label for="AddIngredient" class="sr-only">Add Ingredient</label>
-                @*<div id="AddIngredient" aria-labelledby="Add Ingredient" class="input-group-btn">
-                                <button type="button" class="btn btn-default">
-                                    <span class=" glyphicon glyphicon-plus"></span>
-                                </button>                                
-                            </div>*@
-                <div ng-repeat="product in recipe.products ">
-                    <exproduct-recipe product="product" products="recipe.products"></exproduct-recipe>
-                </div>
-                <label for="Ingredient" class="sr-only">Ingredient</label>
-                <addproduct-recipe recipe-products="recipe.products"></addproduct-recipe>
-                @*<select id="Ingredient" class="form-control" placeholder="Ingredient" aria-labelledby="Ingredient"></select>*@
+        <div id="Ingredients" aria-labelledby="Ingredients">            
+            <div ng-repeat="product in recipe.products ">
+                <exproduct-recipe product="product" products="recipe.products"></exproduct-recipe>
             </div>
-
-        </div>
+            <addproduct-recipe recipe-products="recipe.products"></addproduct-recipe>
+         </div>
         <div class="input-group">
             <label for="Instructions" class="sr-only">Instructions</label>
             <textarea id="Instructions" class="form-control" name="instructions" ng-model="recipe.instructions" placeholder="{{ texts.recipe.instructions }}" aria-labelledby="Instructions"></textarea>
         </div>
         <div class="input-group">
-            <textarea name="tips" ng-model="recipe.tips" placeholder="{{ texts.recipe.tips }}"></textarea>
+            <div ng-repeat="special in recipe.equipments | filter:nonEmpty ">
+                <input type="text" name="{{ 'special_' + $index }}" ng-model="special.equipment" class="form-control" aria-labelledby="Special Equipment" style="width:75%"/>                
+            </div>
+            <label for="AddSE" class="sr-only">Add Special Equipment</label>
+            <div id="AddSE" aria-labelledby="Add Special Equipment">
+                <input type="text" id="Special Equipment" ng-model="newEquipment" class="form-control" placeholder="Special Equipment" aria-labelledby="Special Equipment" style="width:75%"/>
+                <button type="button" class="btn btn-default col-xs-3" ng-click="addEquipment()">
+                    <span class=" glyphicon glyphicon-plus"></span>
+                </button>
+            </div>          
+        </div>
+        <div class="input-group">
+            <label for="Tips" class="sr-only">Tips</label>
+            <textarea id="Tips" class="form-control" style="width:500px; height:200px" name="tips" ng-model="recipe.tips" placeholder="Tips" aria-labelledby="Tips"></textarea>
         </div>
          <p>
             <input type="submit" value="Create" />
@@ -74,6 +65,23 @@
            <div new-product="" ng-show="showProduct" show="showProduct"></div>
         </div>
 
-
+<div class=" container-fluid">
+    <div class="modal fade" id="mdlSubmit" tabindex="-1" role="dialog" data-keyboard="true" aria-labelledby="mdlSubmitLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h3 class="modal-title" id="mdlSubmitLabel">Are you sure you're ready to submit this Recipe?</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>When you submit this recipe our team will examine it carefully before allowing it to appear in the sited recipes.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">I need to change something</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
  

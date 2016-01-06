@@ -46,6 +46,7 @@
     <Property Name="measurements_id_volume" Type="int" Nullable="false" />
     <Property Name="measurements_id_weight" Type="int" Nullable="false" />
     <Property Name="amount_weight_in_volume" Type="float" Nullable="false" />
+    <Property Name="nutritional_per" Type="int" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="approved" Type="bit" Nullable="false" />
   </EntityType>
@@ -261,6 +262,18 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
       </Principal>
       <Dependent Role="products_in_recipe">
         <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_measure_type">
+    <End Role="measure_type" Type="Self.measure_type" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measure_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="nutritional_per" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -562,6 +575,10 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
     <AssociationSet Name="FK_products_in_recipe_recipe" Association="Self.FK_products_in_recipe_recipe">
       <End Role="recipe" EntitySet="recipe" />
       <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_measure_type" Association="Self.FK_products_measure_type">
+      <End Role="measure_type" EntitySet="measure_type" />
+      <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
       <End Role="measurements" EntitySet="measurements" />

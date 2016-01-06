@@ -25,14 +25,17 @@ angular.module("controllers").controller('addProductCtrl', function ($scope, Pro
             nutritions[key].alias = mustNutrition[key].measurement.alias;
     });
     $scope.mustNutrition = nutritions;
-
+    $scope.measureTypes = DetailsFactory.measureTypes().filter(function (m) {
+        return m.id == 1 || m.id == 2;
+    });
     // prepare product object to be added 
     function createProduct() {
         return {
             name: "",
             description: "",
             weight_in_volume: "",
-            mustNutrition: nutritions
+            mustNutrition: nutritions,
+            nutritional_per: 0,
         };
     }
     var p = $scope.product = createProduct();
