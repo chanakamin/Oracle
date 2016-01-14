@@ -29,7 +29,12 @@
                     .then(function (data) {
                         return data;
                     });
-            }
+            },
+            getData: function (action) {
+                return $http.get('Data/' + action).then(function (data) {
+                    return data.data;
+                });
+            },
         };
     });
 })();

@@ -8,9 +8,9 @@ namespace Oracle
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery/jquery-{version}.js").IncludeDirectory(
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").IncludeDirectory(
+                        "~/Scripts/jquery","*.js").IncludeDirectory(
                         "~/Scripts/plugin", "*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -22,7 +22,7 @@ namespace Oracle
 
             bundles.Add(new ScriptBundle("~/bundles/angularsrc").Include(
                   "~/Scripts/angularSrc/angular.js",
-                  "~/Scripts/angularSrc/angular.min.js",
+                  //"~/Scripts/angularSrc/angular.min.js",
                   "~/Scripts/angularSrc/angular-animate*",
                   "~/Scripts/angularSrc/angular-route*"                  
                 ));

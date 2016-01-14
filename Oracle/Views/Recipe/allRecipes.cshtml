@@ -2,15 +2,13 @@
         <!--a place for tips-->
         <div class="col-xs-2" >
             <div class="well">
-               <p>
-                   see it! we sure you have the recipe for your needs!!
-               </p>
+                <h1>Just click on one of the Recipes in the list</h1>                   
             </div>
         </div>
 
         <!--a place for text-->
-<div class="col-xs-7">
-    <div ng-repeat="recipe in recipes" ng-click="recipe.show()">
+<div class="col-xs-7" >
+    <div ng-repeat="recipe in recipes" ng-click="recipe.show()" >
         <label>{{recipe.name}}</label>
         <p>{{recipe.description}}</p>
     </div>

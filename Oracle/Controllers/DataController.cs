@@ -14,6 +14,9 @@ namespace Oracle.Controllers
         static DataController ()
 	    {
             recipes = new recipeEntities();
+            //nutritional_value n = recipes.nutritional_value.Where(nt => nt.name == "sugar").First();
+            //n.mustable = false;
+            //recipes.SaveChanges();
 	    }       
         //
         // GET: /Data/

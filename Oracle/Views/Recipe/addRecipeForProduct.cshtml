@@ -1,8 +1,33 @@
-﻿<ng-form >
-    <select ng-model="productRecipe.product_id" default-option="select product" ng-options="product.id as product.name for product in Products" ></select>
-    <select ng-model="productRecipe.measurements_id" default-option="select measurement" ng-options="measurement.id as measurement.name for measurement in Measurements "></select>
-    <input type="number" min="0" step="0.1" ng-model="productRecipe.amount" name="amount" />
-    <button ng-if="add" type="button" ng-click="submit()">+</button>
-    <button ng-if="!add" type="button" ng-click="submit()">-</button>
+﻿<ng-form class ="form-group">
+
+        <div class="col-xs-8">
+            <div class="input-group">
+                <label for="Select Product" class="sr-only">Select Product</label>
+                <select id="Select Product" class="form-control" ng-model="productRecipe.product_id" default-option="Select Product" ng-options="product.id as product.name for product in Products" ></select></div>
+            </div>
+      
+ 
+        <div class="col-xs-1">
+            <div class="input-group">
+                <label for="Select Measurement" class="sr-only">Select Measurement</label>
+                <select id="Select Product" class="form-control" ng-model="productRecipe.measurements_id" default-option="Select Measurement" ng-options="measurement.id as measurement.name for measurement in Measurements "></select></div>
+       </div>
+        <div class="col-xs-1">
+    <div class="input-group">
+        <label for="Amount" class="sr-only">Amount</label>
+        <input id="Amount" class="form-control" type="number" min="0" step="0.1" ng-model="productRecipe.amount" name="Amount" /></div>
+             </div>
+    
+         <div class="col-xs-1">
+            <div class="input-group" ng-if="add">
+                <label for="Add" class="sr-only">Add</label>
+                <button id="Add" class="form-control"  type="button" ng-click="submit()">+</button>
+            </div>
+            <div ng-if="!add" class="input-group">    
+                <label for="Sub" class="sr-only">Sub</label>
+                <button id="Sub" class="form-control" type="button" ng-click="submit()">-</button>
+            </div>
+         </div>
+
 </ng-form>
       

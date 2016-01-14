@@ -1,12 +1,12 @@
 ﻿@model Oracle.Models.recipe
-        <!--a place for tips-->
-        <div class="col-xs-2" >
-            <div class="well">
-               
-            </div>
-        </div>
+       
+<!--a place for tips-->
+<div class="col-xs-2" >
+    <div class="well">               
+    </div>
+</div>
 
-        <!--a place for text-->
+<!--a place for text-->
 <div class="col-xs-7">
     <form class="form-group" name="addRecipe" id="addRecipe" ng-submit="SubmitRecipe()">
         <div class="input-group-lg">
@@ -31,7 +31,7 @@
                 <exproduct-recipe product="product" products="recipe.products"></exproduct-recipe>
             </div>
             <addproduct-recipe recipe-products="recipe.products"></addproduct-recipe>
-         </div>
+        </div>
         <div class="input-group">
             <label for="Instructions" class="sr-only">Instructions</label>
             <textarea id="Instructions" class="form-control" name="instructions" ng-model="recipe.instructions" placeholder="{{ texts.recipe.instructions }}" aria-labelledby="Instructions"></textarea>
@@ -52,18 +52,20 @@
             <label for="Tips" class="sr-only">Tips</label>
             <textarea id="Tips" class="form-control" style="width:500px; height:200px" name="tips" ng-model="recipe.tips" placeholder="Tips" aria-labelledby="Tips"></textarea>
         </div>
-         <p>
-            <input type="submit" value="Create" />
+        <p>
+            <input type="submit" class="btn btn-default" value="Create" />
         </p>
     </form>
 
-    <button type="button" ng-click="AddProduct()" > add product </button>
-
-    </div>
-        <!--this is a disapearing menu (how to do? toggle?--check.)-->
-        <div class="col-xs-3" >
-           <div new-product="" ng-show="showProduct" show="showProduct"></div>
-        </div>
+    <button type="button" class="btn btn-default" ng-click="AddProduct()" >
+        <span class="glyphicon glyphicon-apple"></span> 
+        add product </button>
+</div>
+        
+<!--this is a disapearing menu (how to do? toggle?--check.)-->
+<div class="col-xs-3" class="Pullout" style="background:black; color:orangered; height:1000px; padding:50px 0px 2px 4px">
+    <div new-product="" ng-show="showProduct" show="showProduct"></div>
+</div>
 
 <div class=" container-fluid">
     <div class="modal fade" id="mdlSubmit" tabindex="-1" role="dialog" data-keyboard="true" aria-labelledby="mdlSubmitLabel">
