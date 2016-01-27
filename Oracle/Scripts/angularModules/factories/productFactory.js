@@ -1,6 +1,6 @@
 ﻿(function () {
     /* Factory to save all function of product */
-    angular.module("factoryModule").factory("ProductsFactory", function (resourcesFactory, DetailsFactory) {
+    function fact(resourcesFactory, DetailsFactory, userFactory) {         
         var products = [];
 
         // create new product object
@@ -44,10 +44,10 @@
                         products.push(product);
                         console.log("add product succeed");
                     });
-                    //});
-                    //.error(function (e) {
-                    //    console.log("add product fail");
-                    //});
+            //});
+            //.error(function (e) {
+            //    console.log("add product fail");
+            //});
         };
         var initProductsFromDb = function () {
             resourcesFactory.initResource('getProduct', 'products')
@@ -99,12 +99,14 @@
                 return product;
             },
             addProduct: function (product, nutritionalsValues) {
-                var userId = DetailsFactory.userId();
+                var userId = userFactory.getUser().id;
                 if (userId > 0) {
                     product.userId = userId;
                     addProductToDb(product, nutritionalsValues);
                 }
             }
         };
-    });
+    
+    };
+    angular.module("factoryModule").factory("ProductsFactory", ['resourcesFactory', 'DetailsFactory','userFactory',fact]); 
 })();

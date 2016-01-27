@@ -1,6 +1,6 @@
 ﻿(function () {
     /* Fuctory to save all functions of recipe */
-    angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory) {
+    angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory, userFactory) {
         var current = 0;
         var recipes = [];
         // inner functions in factory
@@ -8,7 +8,7 @@
         function Recipe(name ,description,  preparation, portions, instructions, tips) {
             this.name = name;
             this.description = description;
-            this.user_id = DetailsFactory.userId();
+            this.user_id = userFactory.getUser().id;
             this.preparation = preparation;
             this.time = time;
             this.tips = tips;

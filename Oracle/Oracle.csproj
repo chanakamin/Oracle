@@ -163,6 +163,7 @@
     <Compile Include="Models\partialModelClasses\products_in_recipe.cs" />
     <Compile Include="Models\partialModelClasses\product_in_nutritional_value.cs" />
     <Compile Include="Models\partialModelClasses\recipe.cs" />
+    <Compile Include="Models\partialModelClasses\user.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>Recipe.tt</DependentUpon>
     </Compile>
@@ -203,16 +204,13 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Oracle-תשעוא%27ח171330.mdf" />
-    <Content Include="App_Data\aspnet-Oracle-תשעוא%27ח171330_log.ldf">
-      <DependentUpon>aspnet-Oracle-תשעוא%27ח171330.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\recipe.mdf" />
-    <Content Include="App_Data\recipe_log.ldf">
-      <DependentUpon>recipe.mdf</DependentUpon>
+    <Content Include="App_Data\recipes.mdf" />
+    <Content Include="App_Data\recipes_log.ldf">
+      <DependentUpon>recipes.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Basic.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\jquery.mmenu.all.css" />
     <Content Include="Content\bootstrap\_bootstrap-theme.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -280,6 +278,7 @@
     <Content Include="Scripts\angularModules\controllers\addProduct.js" />
     <Content Include="Scripts\angularModules\controllers\1ctrlModule.js" />
     <Content Include="Scripts\angularModules\controllers\index.js" />
+    <Content Include="Scripts\angularModules\controllers\login.js" />
     <Content Include="Scripts\angularModules\controllers\newRecipeCtrl.js" />
     <Content Include="Scripts\angularModules\controllers\nutritionalRecipeCtrl.js" />
     <Content Include="Scripts\angularModules\controllers\nutritionalsRecipe.js" />
@@ -295,6 +294,8 @@
     <Content Include="Scripts\angularModules\factories\productFactory.js" />
     <Content Include="Scripts\angularModules\factories\1mainFactory.js" />
     <Content Include="Scripts\angularModules\factories\recipeFactory.js" />
+    <Content Include="Scripts\angularModules\factories\uiFactory.js" />
+    <Content Include="Scripts\angularModules\factories\1user.js" />
     <Content Include="Scripts\angularModules\filters\1filterModule.js" />
     <Content Include="Scripts\angularSrc\angular-animate.js" />
     <Content Include="Scripts\angularSrc\angular-animate.min.js" />
@@ -307,6 +308,10 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.min.js" />
     <EntityDeploy Include="Models\Recipe.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Recipe.Designer.cs</LastGenOutput>
@@ -324,17 +329,14 @@
       <DependentUpon>Recipe.edmx</DependentUpon>
       <LastGenOutput>Recipe1.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.min.js" />
-    <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jqueryval\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.min.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery\ajquery-1.11.3.min.js" />
     <Content Include="Scripts\jquery\bootstrap.js" />
-    <Content Include="Scripts\jquery\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery\jquery.mmenu.all.min.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
@@ -342,6 +344,8 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Recipe\allRecipes.cshtml" />
     <Content Include="Views\Recipe\showRecipe.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Recipe\find.cshtml" />
     <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

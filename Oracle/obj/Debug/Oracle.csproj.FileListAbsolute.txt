@@ -184,3 +184,34 @@ I:\final project\versions\Oracle 4\chaya\ЗЙД\Oracle\bin\System.Web.WebPages.R
 I:\final project\versions\Oracle 4\chaya\ЗЙД\Oracle\obj\Debug\Oracle.csprojResolveAssemblyReference.cache
 I:\final project\versions\Oracle 4\chaya\ЗЙД\Oracle\obj\Debug\Oracle.dll
 I:\final project\versions\Oracle 4\chaya\ЗЙД\Oracle\obj\Debug\Oracle.pdb
+J:\final\Oracle\Oracle\bin\Oracle.dll
+J:\final\Oracle\Oracle\bin\Oracle.pdb
+J:\final\Oracle\Oracle\bin\Antlr3.Runtime.dll
+J:\final\Oracle\Oracle\bin\EntityFramework.dll
+J:\final\Oracle\Oracle\bin\Microsoft.Web.Infrastructure.dll
+J:\final\Oracle\Oracle\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+J:\final\Oracle\Oracle\bin\Newtonsoft.Json.dll
+J:\final\Oracle\Oracle\bin\System.Net.Http.Formatting.dll
+J:\final\Oracle\Oracle\bin\System.Web.Http.dll
+J:\final\Oracle\Oracle\bin\System.Web.Http.WebHost.dll
+J:\final\Oracle\Oracle\bin\System.Web.Mvc.dll
+J:\final\Oracle\Oracle\bin\System.Web.Optimization.dll
+J:\final\Oracle\Oracle\bin\System.Web.Providers.dll
+J:\final\Oracle\Oracle\bin\System.Web.Razor.dll
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.Deployment.dll
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.dll
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.Razor.dll
+J:\final\Oracle\Oracle\bin\WebGrease.dll
+J:\final\Oracle\Oracle\bin\EntityFramework.xml
+J:\final\Oracle\Oracle\bin\Newtonsoft.Json.xml
+J:\final\Oracle\Oracle\bin\System.Net.Http.Formatting.xml
+J:\final\Oracle\Oracle\bin\System.Web.Http.xml
+J:\final\Oracle\Oracle\bin\System.Web.Http.WebHost.xml
+J:\final\Oracle\Oracle\bin\System.Web.Mvc.xml
+J:\final\Oracle\Oracle\bin\System.Web.Razor.xml
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.xml
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.Deployment.xml
+J:\final\Oracle\Oracle\bin\System.Web.WebPages.Razor.xml
+J:\final\Oracle\Oracle\obj\Debug\Oracle.csprojResolveAssemblyReference.cache
+J:\final\Oracle\Oracle\obj\Debug\Oracle.dll
+J:\final\Oracle\Oracle\obj\Debug\Oracle.pdb

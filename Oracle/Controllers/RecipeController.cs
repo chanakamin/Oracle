@@ -53,26 +53,34 @@ namespace Oracle.Controllers
         //    return e;
         //}
 
-        public ActionResult Index()
+        public ActionResult Index(bool partial = false)
         {           
-            Session.Add("userId",5);    
             recipe r = new recipe();
-            return View();
+            if (partial)
+            {
+                return PartialView();
+            }
+            else
+            {
+                return View();
+            }
         }
+        
         public ActionResult createRecipe()
         {
             return View();
         }
-
+         
         public ActionResult newRecipe()
         {
             return PartialView();
         }
-
+        
         public ActionResult addProduct()
         {
             return PartialView();
         }
+         
         public ActionResult addRecipeForProduct()
         {
             return PartialView();
@@ -89,6 +97,9 @@ namespace Oracle.Controllers
         {
             return PartialView();
         }
-
+        public ActionResult find()
+        {
+            return PartialView();
+        }
     }
 }

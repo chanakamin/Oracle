@@ -119,7 +119,7 @@
           <Property Name="user_or_manager" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\COMPUTER\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="measurement_with_type">
           <Key>
             <PropertyRef Name="id" />
@@ -135,7 +135,7 @@ warning 6002: The table/view 'J:\COMPUTER\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.
           <Property Name="measure_type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\COMPUTER\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="nutritional_value_details">
           <Key>
             <PropertyRef Name="id" />

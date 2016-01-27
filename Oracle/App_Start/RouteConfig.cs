@@ -18,10 +18,25 @@ namespace Oracle
             //defaults: new { controller = "Recipe", action = "Index" }
             //  );
 
+            //routes.MapRoute(
+            //   name: "angular",
+            //   url: "#/{controller}/{action}/{id}",
+            //   defaults: new { controller = "Recipe", action = "Index", id = UrlParameter.Optional }
+            //);
             routes.MapRoute(
-               name: "angular",
-               url: "#/{controller}/{action}/{id}",
-               defaults: new { controller = "Recipe", action = "Index", id = UrlParameter.Optional }
+                name: "Login",
+                url: "Login/{action}/{id}",
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Recipe",
+                url: "Recipe/{action}/{id}",
+                defaults: new { controller = "Recipe", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Manager",
+                url: "Manager/{action}/{id}",
+                defaults: new { controller = "Manager", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
@@ -29,8 +44,6 @@ namespace Oracle
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
-
-           
         }
     }
 }

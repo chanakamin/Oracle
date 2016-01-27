@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ce2aecf805a481e901b8d764b7cd312" Name="Diagram1">
+      <Diagram DiagramId="3438bf316cb040d993a2a42df1268924" Name="Diagram1">
         <EntityTypeShape EntityType="recipeModel.equipment_in_recipe" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.measure_type" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.measurement" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />

@@ -8,7 +8,7 @@
         }
         var basePage = 'Recipe';
         Recipe.prototype.show = function () {            
-            $location.path('/showRecipe/' + this.id); debugger;
+            $location.path('/Recipe/showRecipe/' + this.id); 
             RecipesFactory.setCurrent(this.id); 
         };
         $scope.recipes = [];

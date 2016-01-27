@@ -35,6 +35,11 @@
                     return data.data;
                 });
             },
+            action: function (config) {
+                return $http(config).then(function (response) {
+                    return response.data;
+                });
+            }
         };
     });
 })();

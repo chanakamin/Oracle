@@ -2,25 +2,34 @@
 app.config(function ($routeProvider, $locationProvider)
 {    'use strict'
     $routeProvider
-    .when('/allRecipes', {
+    .when('/Recipe/allRecipes', {
         templateUrl: 'Recipe/allRecipes',
         controller: 'recipesListCtrl'
-    }).when('/newRecipe', {
+    }).when('/Recipe/newRecipe', {
         templateUrl: 'Recipe/newRecipe',
         controller: 'newRecipeCtrl'
-    }).when('/addProduct', {
+    }).when('/Recipe/addProduct', {
         templateUrl: 'Recipe/addProduct',
         controller: 'addProductCtrl'
-    }).when('/addRecipeForProduct', {
+    }).when('/Recipe/addRecipeForProduct', {
         templateUrl: 'Recipe/addRecipeForProduct',
         controller: 'productRecipeCtrl'
-    }).when('/nutritionalValues', {
+    }).when('/Recipe/nutritionalValues', {
         templateUrl: 'Recipe/nutritionalValues',
         controller: 'nutritionalsRecipeCtrl'
-    }).when('/showRecipe/:id', {
+    }).when('/Recipe/showRecipe/:id', {
         templateUrl: 'Recipe/showRecipe/0',
         controller: 'showRecipeCtrl'
+    }).when('/Login', {
+        templateUrl: 'Login/Login',
+        controller: 'loginCtrl',
+    }).when('/Recipe', {
+        templateUrl: 'Recipe/Index' + '?partial=true',
+    }).otherwise({
+        redirectTo: '/Login',
+       // controller: 'loginCtrl',
     });
+    //$locationProvider.html5Mode(true);
 });
 // when app runs, all factories are being initialize.
 app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, RecipesFactory, resourcesFactory) {
