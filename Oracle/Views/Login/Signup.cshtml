@@ -1,0 +1,9 @@
+﻿<form name="newUser" ng-model="newUser" ng-submit="register()">
+                <h3>Enter your name and a password to sign in</h3>
+                <p>Once you are registered you will be able to design your own recipes and upload them</p>
+                <input type="text" ng-model="user.name" placeholder="name" name="name" required="required"/>
+                <input type="password" ng-model="user.password" placeholder="password" name="password" required="required"/>
+                <input type="email" ng-model="user.email" placeholder="Email" name="email"/>
+                <button type="submit">OK</button>
+                <button type="button" ng-click="state('welcome')">Cancel</button>
+</form>    

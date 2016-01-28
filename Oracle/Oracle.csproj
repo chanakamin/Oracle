@@ -209,8 +209,6 @@
       <DependentUpon>recipes.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Basic.css" />
-    <Content Include="Content\bootstrap\bootstrap.css" />
-    <Content Include="Content\bootstrap\jquery.mmenu.all.css" />
     <Content Include="Content\bootstrap\_bootstrap-theme.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -274,36 +272,38 @@
     <Content Include="Content\themes\images\tachush18.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\angularModules\app.js" />
-    <Content Include="Scripts\angularModules\controllers\addProduct.js" />
-    <Content Include="Scripts\angularModules\controllers\1ctrlModule.js" />
-    <Content Include="Scripts\angularModules\controllers\index.js" />
-    <Content Include="Scripts\angularModules\controllers\login.js" />
-    <Content Include="Scripts\angularModules\controllers\newRecipeCtrl.js" />
-    <Content Include="Scripts\angularModules\controllers\nutritionalRecipeCtrl.js" />
-    <Content Include="Scripts\angularModules\controllers\nutritionalsRecipe.js" />
-    <Content Include="Scripts\angularModules\controllers\productRecipe.js" />
-    <Content Include="Scripts\angularModules\controllers\reciesList.js" />
-    <Content Include="Scripts\angularModules\controllers\showRecipe.js" />
-    <Content Include="Scripts\angularModules\directives\directModule.js" />
-    <Content Include="Scripts\angularModules\directives\nutritionalValues.js" />
-    <Content Include="Scripts\angularModules\directives\productDirective.js" />
-    <Content Include="Scripts\angularModules\directives\productRecipe.js" />
-    <Content Include="Scripts\angularModules\directives\selectDirective.js" />
-    <Content Include="Scripts\angularModules\factories\detailsFactory.js" />
-    <Content Include="Scripts\angularModules\factories\productFactory.js" />
-    <Content Include="Scripts\angularModules\factories\1mainFactory.js" />
-    <Content Include="Scripts\angularModules\factories\recipeFactory.js" />
-    <Content Include="Scripts\angularModules\factories\uiFactory.js" />
-    <Content Include="Scripts\angularModules\factories\1user.js" />
-    <Content Include="Scripts\angularModules\filters\1filterModule.js" />
+    <Content Include="Scripts\angularModules\Login\user.js" />
+    <Content Include="Scripts\angularModules\Login\app.js" />
+    <Content Include="Scripts\angularModules\Recipe\app.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\addProduct.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\1ctrlModule.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\index.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\login.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\newRecipeCtrl.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\nutritionalRecipeCtrl.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\nutritionalsRecipe.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\productRecipe.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\reciesList.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\showRecipe.js" />
+    <Content Include="Scripts\angularModules\Recipe\directives\directModule.js" />
+    <Content Include="Scripts\angularModules\Recipe\directives\nutritionalValues.js" />
+    <Content Include="Scripts\angularModules\Recipe\directives\productDirective.js" />
+    <Content Include="Scripts\angularModules\Recipe\directives\productRecipe.js" />
+    <Content Include="Scripts\angularModules\Recipe\directives\selectDirective.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\detailsFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\productFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\1mainFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\recipeFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\uiFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\1user.js" />
+    <Content Include="Scripts\angularModules\Recipe\filters\1filterModule.js" />
     <Content Include="Scripts\angularSrc\angular-animate.js" />
     <Content Include="Scripts\angularSrc\angular-animate.min.js" />
     <Content Include="Scripts\angularSrc\angular-route.js" />
     <Content Include="Scripts\angularSrc\angular-route.min.js" />
     <Content Include="Scripts\angularSrc\angular.js" />
     <Content Include="Scripts\angularSrc\angular.min.js" />
-    <Content Include="Scripts\angularModules\factories\resourcesFactory.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\resourcesFactory.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -312,6 +312,14 @@
     <Content Include="Scripts\jqueryui\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jqueryval\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery\code.js" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Scripts\jquery\bootstrap.js" />
+    <Content Include="Content\bootstrap\jquery.mmenu.all.css" />
+    <Content Include="Scripts\jquery\jquery.mmenu.all.min.js" />
+    <Content Include="Content\bootstrap\jquery.mmenu.positioning.css" />
+    <Content Include="Content\bootstrap\jquery.mmenu.themes.css" />
+    <Content Include="zsomethings\Welcome.html" />
     <EntityDeploy Include="Models\Recipe.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Recipe.Designer.cs</LastGenOutput>
@@ -335,8 +343,6 @@
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jqueryval\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery\ajquery-1.11.3.min.js" />
-    <Content Include="Scripts\jquery\bootstrap.js" />
-    <Content Include="Scripts\jquery\jquery.mmenu.all.min.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
@@ -346,6 +352,10 @@
     <Content Include="Views\Recipe\showRecipe.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Recipe\find.cshtml" />
+    <Content Include="Views\Login\_LoginLayout.cshtml" />
+    <Content Include="Views\Login\Signup.cshtml" />
+    <Content Include="Views\Login\Welcome.cshtml" />
+    <Content Include="Views\Login\SignIn.cshtml" />
     <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -367,6 +377,7 @@
     <Content Include="Views\Recipe\createRecipe.cshtml" />
     <Content Include="Views\Recipe\addRecipeForProduct.cshtml" />
     <Content Include="Views\Recipe\nutritionalValues.cshtml" />
+    <Content Include="Views\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -374,7 +385,10 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="zsomethings\CSS\" />
+    <Folder Include="zsomethings\JS\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

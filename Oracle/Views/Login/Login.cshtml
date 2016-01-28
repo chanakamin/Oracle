@@ -1,14 +1,28 @@
 ﻿<div id="login" @*ng-controller="loginCtrl"*@>
-<div class="col-xs-2" ><button ng-click="try()">
-    try me
-                       </button></div>
-<div class="col-xs-7" >
+ <div class="col xs-12 hidden-xs col-sm-3 " >
+                <div class="well">
+                    <p>Just click Enter to start.
+                    </p>
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </div>
+                 <div class="well">
+                    <p>
+                        Although we did our best to ensure that this site is compatible to all browsers, for best performance use Chrome. It is totally free! You can 
+                        <a href="https://www.google.com/intl/en/chrome/browser/desktop/index.html">download Chrome</a> Chrome here.
+                    </p>
+                </div>
+                <div class="well">
+                    <p>
+                       Make sure 
+                        <a href="http://activatejavascript.org/en/instructions/chrome">Javascript</a> is enabled.
+                    </p>
+                </div>
+        </div>
+<div class="col-xs-12 col-sm-9" >
     <div ng-switch="part">
-        <div ng-switch-when="welcome">
-            <h2>Welcome</h2>
-            <p>
-                Click on one of the buttons <br /> below to get started
-            </p>
+        <div ng-switch-when="welcome">            
+            <h1 class="large">Welcome.</h1>
+            <h6>We are glad to see you here.</h6>
         </div>
         <div ng-switch-when="sign">
             <form name="newUser" ng-model="newUser" ng-submit="register()">
@@ -68,7 +82,6 @@
                 <button ng-click="enter=false; state('welcome');">return</button>
             </div>
         </div>
-    </div>
+    </div>    
 </div>
-<div class="col-xs-3"></div>
-</div>
+

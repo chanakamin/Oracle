@@ -27,12 +27,15 @@ namespace Oracle
                   "~/Scripts/angularSrc/angular-route*"                  
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/angularModules").IncludeDirectory(
-                "~/Scripts/angularModules", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/factories", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/controllers", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/directives", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/filters", "*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angularRecipes").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe", "*.js").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe/factories", "*.js").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe/controllers", "*.js").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe/directives", "*.js").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe/filters", "*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularLogin").IncludeDirectory(
+                "~/Scripts/angularModules/Login", "*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
