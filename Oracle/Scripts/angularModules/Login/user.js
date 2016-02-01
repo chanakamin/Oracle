@@ -22,7 +22,7 @@
                 data: { user: this },
                 url: "Login/addUser",
             }).then(function (data) {
-                this.id = data.id;
+                this.id = data.data.id;
                 return true;
             });            
         };
@@ -52,12 +52,12 @@
             addUser: function (name, password, email, navigate) {
                 var u = new User(name, password, email);
                 return u.verify().then(function (data) {
-                    if (data.can) {
+                    if (data.data.can) {
                         user = u;
                         return user.add();
                      }
                     else {
-                        return data.reason;
+                        return data.data.reason;
                     }
                 });
             },
@@ -67,7 +67,8 @@
             login: function (name, password) {
                 u = new User(name, password);
                 return u.verify().then(function (data) {
-                    if (data.exist) {
+                    if (data.data.exist) {
+                        data = data.data;
                         u.email = data.user.email;
                         u.user_or_manager = data.user.user_or_manager;
                         u.id = data.user.id;
@@ -79,7 +80,7 @@
                         }
                     }
                     else {
-                        return data.reason;
+                        return data.data.reason;
                     }
                 });
             },

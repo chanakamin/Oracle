@@ -54,7 +54,20 @@ namespace Oracle.Controllers
         //}
 
         public ActionResult Index(bool partial = false)
-        {           
+        {
+            int user = 0;
+            string name = "Guest";
+            ViewBag.isManager = 0;
+            if (Session["user"] is user)
+            {
+                user = (Session["user"] as user).id;
+                name = (Session["user"] as user).name;
+                ViewBag.isManager = Convert.ToInt32((Session["user"] as user).user_or_manager);
+            }
+            if (Session["user"] == null)
+                user = -1;
+            ViewBag.id = user;
+            ViewBag.name = name;
             recipe r = new recipe();
             if (partial)
             {
@@ -65,6 +78,10 @@ namespace Oracle.Controllers
                 return View();
             }
         }
+        public ActionResult Welcome()
+        {
+            return PartialView();
+        }
         
         public ActionResult createRecipe()
         {
@@ -73,17 +90,23 @@ namespace Oracle.Controllers
          
         public ActionResult newRecipe()
         {
-            return PartialView();
+            if(Session["user"] is user)
+                return PartialView();
+            return  RedirectToAction("forbidden");
         }
         
         public ActionResult addProduct()
         {
-            return PartialView();
+            if (Session["user"] is user)
+                return PartialView();
+            return RedirectToAction("forbidden");
         }
          
         public ActionResult addRecipeForProduct()
         {
-            return PartialView();
+            if (Session["user"] is user)
+                return PartialView();
+            return RedirectToAction("forbidden");
         }
         public ActionResult nutritionalValues()
         {
@@ -98,6 +121,10 @@ namespace Oracle.Controllers
             return PartialView();
         }
         public ActionResult find()
+        {
+            return PartialView();
+        }
+        public ActionResult forbidden()
         {
             return PartialView();
         }

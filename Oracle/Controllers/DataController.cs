@@ -33,8 +33,15 @@ namespace Oracle.Controllers
         [HttpGet]
         public JsonResult getProducts(string where="")
         {
+            int id;
+            if (Session["user"] is user)
+            {
+                id = (Session["user"] as user).id;
+            }
+            else
+                id = 0;
             List<nutritional_value_details> nutritionalDetails = recipes.nutritional_value_details.ToList();
-            List<product> products = recipes.products.ToList();
+            List<product> products = recipes.products.Where(p=>p.approved==true || p.user_id == id).ToList();
             products = products.Select(p => p.getSerialize()).ToList();
             var prod = products.Select(p => new { product = p, nutritional = nutritionalDetails.Where(nv => nv.product_id == p.id).ToList() }).ToList();            
             return Json( prod , JsonRequestBehavior.AllowGet);
@@ -56,8 +63,15 @@ namespace Oracle.Controllers
 
         [HttpGet]
         public JsonResult getRecipes()
-        { 
-            List<recipe> recipe = recipes.recipes.ToList();
+        {
+            int id;
+            if (Session["user"] is user)
+            {
+                id = (Session["user"] as user).id;
+            }
+            else
+                id = 0;
+            List<recipe> recipe = recipes.recipes.Where(r => r.approved == true || r.user_id == id).ToList();
             recipe = recipe.Select(r => r.getSerialize()).ToList();
             
             return Json(recipe,JsonRequestBehavior.AllowGet);

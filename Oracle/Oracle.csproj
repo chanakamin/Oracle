@@ -272,15 +272,14 @@
     <Content Include="Content\themes\images\tachush18.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angularModules\Login\index.js" />
     <Content Include="Scripts\angularModules\Login\user.js" />
     <Content Include="Scripts\angularModules\Login\app.js" />
     <Content Include="Scripts\angularModules\Recipe\app.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\addProduct.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\1ctrlModule.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\index.js" />
-    <Content Include="Scripts\angularModules\Recipe\controllers\login.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\newRecipeCtrl.js" />
-    <Content Include="Scripts\angularModules\Recipe\controllers\nutritionalRecipeCtrl.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\nutritionalsRecipe.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\productRecipe.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\reciesList.js" />
@@ -356,6 +355,8 @@
     <Content Include="Views\Login\Signup.cshtml" />
     <Content Include="Views\Login\Welcome.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
+    <Content Include="Views\Recipe\forbidden.cshtml" />
+    <Content Include="Views\Recipe\Welcome.cshtml" />
     <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

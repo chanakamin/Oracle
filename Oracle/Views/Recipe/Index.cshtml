@@ -2,10 +2,18 @@
     ViewBag.Title = "Index";
     //Layout = "~/Views/Recipe/_LayoutRecipe.cshtml";
 }
+<script type="text/ecmascript">
+    var id = '@ViewBag.user';
+    id = parseInt(id);
+    if (id == -1) {
+        window.location.href = '/';
+    }
+    var name = '@ViewBag.name';
+    var manager = '@ViewBag.isManager';
+</script>
 
+<div ng-view="">
 
-@*<div class="row" ng-view="">
-               
-</div>*@
+</div>
    
 

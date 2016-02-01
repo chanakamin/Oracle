@@ -21,6 +21,7 @@ namespace Oracle.Controllers
         {
             return View();
         }
+        // Functions return partial views - for routing
         public ActionResult Welcome()
         {
             return PartialView();
@@ -33,12 +34,17 @@ namespace Oracle.Controllers
         {
             return PartialView();
         }
-        public ActionResult Logout()
+        public ActionResult Logout(bool view = false)
         {
-            return PartialView();
-        }
+            Session["user"] = null;
+            if (!view)
+            {               
+                return RedirectToAction("Welcome");
+            }
+            return RedirectToAction("Index");
 
-        // Functions return partial views - for routing
+        }
+        
         public ActionResult Login()
         {
             return PartialView();
@@ -135,6 +141,10 @@ namespace Oracle.Controllers
             }
             else
                 Session["user"] = null;
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult guest() {
+            Session["user"] = "guest";
             return Json("success", JsonRequestBehavior.AllowGet);
         }
         public JsonResult unregister(int id)

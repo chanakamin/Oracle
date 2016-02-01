@@ -1,2 +1,11 @@
-﻿<h1 class="large">Welcome.</h1>
-<h6>We are glad to see you here.</h6>
+﻿<div ng-if="!guestPart">
+    <h1 class="large">Welcome.</h1>
+    <h6>We are glad to see you here.</h6>
+</div>
+
+<div ng-if="guestPart">
+    <h3>{{operation}}</h3>
+    <p>{{message}}</p>
+    <button ng-click="link('/')">{{words.cancel}}</button>
+    <button ng-click="guest()">{{words.guest}}</button>
+</div>

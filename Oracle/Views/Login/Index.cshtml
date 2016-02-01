@@ -31,10 +31,10 @@
  <nav id="welcomeMenu" class="col-xs-12 col-sm-5">
         <div>
             <ul class="vertical">
-                <li><a href="#" ng-click="state('login')"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-                <li><a href="#" ng-click="state(3)"><span class="glyphicon glyphicon-user"></span> Continue as guest</a></li>
-            </ul>
-        </div>
-     
+                <li><a href="#" ng-click="link('signin')"><span class="glyphicon glyphicon-log-in"></span>{{words.login}}</a></li>
+                <li><a href="#" ng-click="link('guest')"><span class="glyphicon glyphicon-user"></span>{{words.guest}}</a></li>
+            </ul>            
+        </div>     
     </nav>
+</div>
 

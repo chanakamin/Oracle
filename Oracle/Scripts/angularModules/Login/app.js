@@ -16,13 +16,17 @@ app.config(function( $locationProvider,$routeProvider)
     });
 
 });
-app.run(function ($location, $rootScope, $http) {
+app.run(function ($location, $rootScope, $http, $rootScope) {
     $http.get('Login/user').then(function (data) {
-        var d = data.data;
+        var d = data.data; debugger;
         if (d.status == 1)
         {
-            window.location.hash = '';
-            window.location.pathname = 'Recipe';
+            if (d.user.user_or_manager) {
+                $rootScope.$broadcast('manager_login');
+            }
+            else {
+                window.location.href = '/Recipe';
+            }
         }
     });
     $rootScope.history = [];

@@ -8,8 +8,8 @@
         }
         var basePage = 'Recipe';
         Recipe.prototype.show = function () {            
-            $location.path('/Recipe/showRecipe/' + this.id); 
-            RecipesFactory.setCurrent(this.id); 
+            $location.path('/recipe/' + this.id); 
+            RecipesFactory.setCurrent(this.id);
         };
         $scope.recipes = [];
         angular.forEach(recipes, function (r) {

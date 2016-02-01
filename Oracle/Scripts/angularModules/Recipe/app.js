@@ -3,37 +3,34 @@ app.config(function ($routeProvider, $locationProvider)
 {
     'use strict'
     $routeProvider
-    .when('/Recipe/allRecipes', {
+    .when('/recipes', {
         templateUrl: 'Recipe/allRecipes',
         controller: 'recipesListCtrl'
-    }).when('/Recipe/newRecipe', {
+    }).when('/new', {
         templateUrl: 'Recipe/newRecipe',
         controller: 'newRecipeCtrl'
-    }).when('/Recipe/addProduct', {
+    }).when('/newproduct', {
         templateUrl: 'Recipe/addProduct',
         controller: 'addProductCtrl'
-    }).when('/Recipe/addRecipeForProduct', {
+    }).when('/addRecipeForProduct', {
         templateUrl: 'Recipe/addRecipeForProduct',
         controller: 'productRecipeCtrl'
-    }).when('/Recipe/nutritionalValues', {
+    }).when('/nutritionalValues', {
         templateUrl: 'Recipe/nutritionalValues',
         controller: 'nutritionalsRecipeCtrl'
-    }).when('/Recipe/showRecipe/:id', {
+    }).when('/recipe/:id', {
         templateUrl: 'Recipe/showRecipe/0',
         controller: 'showRecipeCtrl'
-    }).when('/Login', {
-        templateUrl: 'Login/Login',
-        controller: 'loginCtrl',
-    }).when('/Recipe', {
-        templateUrl: 'Recipe/Index' + '?partial=true',
+    }).when('/', {
+        templateUrl: 'Recipe/Welcome',
     }).otherwise({
-        redirectTo: '/Login',
-       // controller: 'loginCtrl',
+        redirectTo: '/',
     });
     //$locationProvider.html5Mode(true);
 });
 // when app runs, all factories are being initialize.
-app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, RecipesFactory, resourcesFactory) {
+app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, RecipesFactory, resourcesFactory, userFactory) {
+    userFactory.setUser(id, name, manager);
     resourcesFactory.initResources().then(function (data) {
         ProductsFactory.initProducts();
         RecipesFactory.initRecipes();
