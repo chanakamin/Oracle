@@ -26,7 +26,7 @@
         });
         $scope.mustNutrition = nutritions;
         $scope.measureTypes = DetailsFactory.measureTypes().filter(function (m) {
-            return m.id == 1 || m.id == 2;
+            return m.id == 1 || m.id == 2 || m.id == 6;
         });
         // prepare product object to be added 
         function createProduct() {

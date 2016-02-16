@@ -4,8 +4,9 @@
         var nutritionals = [],
             measurements = [],
             measureTypes = [],
-            userId = 0;
+            user = 0;
         // function to calculate amount per requested measurement
+        // arguments: the current amount and measurement, requested measurement and specific weight
         function requestAmount(curAmount, curMeasurement, reqMeasurement, weightVolume) {
             if (curMeasurement.id == reqMeasurement.id)
                 return curAmount;
@@ -23,8 +24,18 @@
             // convert from base_req to req
             return amount_per_reqB * reqMeasurement.amount;
         }
-        function calcAmountNut(nutritionalProduct, product, amount,measurementId) {
-            var product_amount_per_base = requestAmount(amount,getMeasurement(measurementId), getMeasurement(product.measure_type.id), product.amount_weight_in_volume);
+        // this function returns amount of base measurement of product
+        // arguments: product object, measurementId it now being measured, the amount
+        function amountPerBase(product, measurementId, amount) {
+            var cur_measurement = getMeasurement(measurementId),
+                requested_measurement = getMeasurement(product.measure_type.id),
+                weight_volume = product.amount_weight_in_volume;
+             return requestAmount(amount, cur_measurement, requested_measurement, weight_volume);
+        }
+
+        // This function calculate nutritional value amount in product upon its amount per base
+        // arguments: product_in_nutritionalValue object, amount per base
+        function calcAmountNut(nutritionalProduct, product_amount_per_base) {            
             var ratio = product_amount_per_base / 100;
             var result = ratio * nutritionalProduct.amount_per_100;
             return result;
@@ -47,7 +58,7 @@
                 nutritionals = data.nutritionalValues;
                 measurements = data.measurements;
                 measureTypes = data.measureTypes;
-                userId = data.userId; 
+                user = data.user; 
                 angular.forEach(nutritionals, function (value) {
                     value.measurement = that.getMeasurement(value.measurements_id);
                 });
@@ -59,7 +70,7 @@
             },
             measurements: function () { return measurements; },
             measureTypes: function () { return measureTypes; },
-            userId: function () { return userId },
+            user: function () { return user },
             // function for nutritionals values
             multiplyNutritionals: function (initNutritionals,multBy) {
                 var multNutritionals = [];
@@ -75,20 +86,31 @@
                 return multNutritionals
             },            
             requestAmount: requestAmount,
+            // this function returns array of nutritionals values for products list - productsRecipe.
             calcNutrition: function (productsRecipe, ProductsFactory) {
                 var nut = [];
                 var pr, nu;
+                var amount_per_base;
+                // prepare array of nutritional result, value is steal empty.
                 angular.forEach(nutritionals, function (n) {
-                    nut.push({name:n.name, value:0,id: n.id});
-                });
-                angular.forEach(productsRecipe,function (p){
+                    var obj = { name: n.name, value: 0, id: n.id };
+                    nut.push(obj);
+                    nut[n.name] = obj;
+                });                
+                // loop on every product to add his nutritionals to array
+                angular.forEach(productsRecipe, function (p) {
+                    // pr - regular product
                     pr = ProductsFactory.getProduct(p.product_id)
-                    angular.forEach(nut,function(n){
+                    amount_per_base = amountPerBase(pr, p.measurements_id, p.amount);
+                    // loop for every nutritional to calc its value and add it to the array
+                    angular.forEach(nut, function (n) {
+                        // find the nutritional in product element in product's array of it
                         nu = pr.nutritionalValue.filter(function(nutr){
                             return nutr.nutritional_value_id == n.id;
-                        })[0];
-                        if(nu && pr && p)
-                             n.value += calcAmountNut(nu,pr,p.amount,p.measurements_id);
+                        })[0]; 
+                        if (nu && pr && p)
+                            // add the nutritional amount
+                             n.value += calcAmountNut(nu,amount_per_base);
                     });
                 })
                 return nut;

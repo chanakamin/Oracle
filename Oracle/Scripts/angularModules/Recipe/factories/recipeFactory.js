@@ -1,18 +1,33 @@
-﻿(function () {
+﻿/// <reference path="../../../plugin/own.js" />
+(function () {
     /* Fuctory to save all functions of recipe */
     angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory, userFactory) {
         var current = 0;
-        var recipes = [];
+        var recipes = [],
+            categories = [];
         // inner functions in factory
         //function to create new recipe
-        function Recipe(name ,description,  preparation, portions, instructions, tips) {
+        function Recipe(name ,description,  preparation, portions, instructions, tips, category) {
             this.name = name;
             this.description = description;
             this.user_id = userFactory.getUser().id;
             this.preparation = preparation;
+            this.category1 = category;
             this.time = time;
             this.tips = tips;
         }
+        Recipe.prototype.getNutritional = function (nutrition) {
+            return Recipe.prototype.getNutritionals.call(this)[nutrition];
+        };
+        Recipe.prototype.getNutritionals = function () {
+            var nutritionals = DetailsFactory.calcNutrition(this.products, ProductsFactory);
+            return nutritionals;
+        };
+        Recipe.prototype.hasProduct = function (id) {
+            return this.products.some(function (p) {
+                return p.product_id == id;
+            });
+        };
 
         // function to orginized list of recipes, get list from ajax request
         var orginizedList = function (recipesList, add) {
@@ -20,6 +35,22 @@
                 recipes = [];
             recipes = recipesList;
         };
+
+        // this function return list of recipes, orginized by their category.
+        var orginizedListByCategories = function (list, sign) {
+            var res = [];
+            categories.forEach(function (c) {
+                res[c.id] = { name: c.name, category: c, list: [] };
+            });
+            list.forEach(function (l) {
+                res[l.category].list.push(l);
+            });
+            if (sign !== 1)
+                res = res.filter(function (f) {
+                    return typeof f !== 'undefined';
+                });
+            return res;
+        }
 
         // This function get products from db, using ajax call
         var initRecipesFromDb = function () {
@@ -46,7 +77,7 @@
                     var r = data.data.recipe;
                     recipe.id = r.id;
                     recipes.push(r);
-                    $location.path('/showRecipe/' + r.id);
+                    $location.path('/recipe/' + r.id);
                 });
         }
 
@@ -59,6 +90,7 @@
                 else
                 {
                     var r = resourcesFactory.getResource('recipes');
+                    categories = resourcesFactory.getResource('categories');
                     orginizedList(r);
                 }
             },
@@ -68,6 +100,9 @@
                     this.initRecipes();
                 }                    
                 return recipes;
+            },
+            getCategories: function() {
+                return categories;
             },
             // function to get recipe upon id
             getRecipe: function (id) {
@@ -80,12 +115,15 @@
                     r = r[0];
                 return r;
             },
+            getCategory: function (id){
+                return categories.filter(function (c) { return c.id == id })[0];
+            },
             // function to create recipe, and add it to list
-            createRecipe: function (name, user_id, preparation, time, portions, tips, comments, photo) {
-                var r = new Recipe(name, user_id, preparation, time, portions, tips, comments, photo);
+            createRecipe: function (name ,description,  preparation, portions, instructions, tips, category, photo) {
+                var r = new Recipe(name, description, preparation, portions, instructions, tips, category, photo);
             },
             addRecipe: function (recipe) {
-                var userId = DetailsFactory.userId();
+                var userId = userFactory.getUser().id;
                 if (userId > 0) {
                     recipe.user_id = userId;
                     addRecipeToDb(recipe);
@@ -109,6 +147,87 @@
                     val.product = ProductsFactory.getProduct(val.product_id);
                     val.measurement = DetailsFactory.getMeasurement(val.measurements_id);
                 })
+            },
+            notApproved: function() {
+                return recipes.filter(function (r) {
+                    return !r.approved;
+                });
+            },
+            update: function (recipe) {
+                return resourcesFactory.updateResource('recipe', { r: recipe })
+                 .then(function (data) {
+                     re = recipes.filter(function (r) {
+                         return r.id == data.id;
+                     })[0];
+                     re = recipe;
+                     $location.path('/recipe/' + re.id);
+                     return re;
+                 });
+            },
+            approve: function (id, ap) {
+                var th = this;
+                var method = 'delete', url = 'Data/recipe'
+                if (ap) {
+                    method = 'put';
+                    url = 'Data/approver';
+                }
+                return resourcesFactory.action({
+                    method: method,
+                    url: url,
+                    data: { id: id }
+                }).then(function (data) {
+                    if (!ap)
+                        recipes.filter(function (r) {
+                            return r.id == id;
+                        })[0] = null;
+                    else
+                        recipes.filter(function (r) {
+                            return r.id == id;
+                        })[0].approved = true;
+                    return true;//th.notApproved();
+                });
+            },
+            // function to get specific nutritional data on recipe.
+            recipeNutritional: function (recId, nutrition) {
+                var r = recipes.filter(function (r) { return r.id == recId })[0];
+                return Recipe.prototype.getNutritional.call(r,nutrition);
+            },
+            recipeNutritionals: function (recId) {
+                var r = recipes.filter(function (r) { return r.id == recId })[0];
+                return Recipe.prototype.getNutritionals.call(r);
+            },
+            // this functin returns array of recipes their calories between values support, from list suppplied
+            recipesBetweenCalories: function (recipesList, minCalories, maxCalories) {
+                var res = [], amount = 0;
+                angular.forEach(recipesList, function (rec) {
+                    amount = Recipe.prototype.getNutritional.call(rec,"Energy").value;
+                    if (amount >= minCalories && amount <= maxCalories)
+                        res.push(rec);
+                });
+                return res;
+            },
+            // this function get recipe and product and return boolean value if this recipe has this product.
+            recipeHasProduct: function (recipe, productId) {
+                return Recipe.Call('hasProduct', recipe, [productId]);
+            },
+            recipeHasProducts: function (recipe, products) {
+                var count = 0,id;
+                products.forEach(function (p) {
+                    if (angular.isObject(p))
+                        id = p.id;
+                    else
+                        id = p;
+                    if (Recipe.Call('hasProduct', recipe, [id]))
+                        count++;
+                });
+                return count;
+            },
+            orginizedByCategories: function (l,remain) {
+                if (typeof l === 'undefined') {
+                    l = recipes.getCopy();
+                }
+                l = orginizedListByCategories(l,remain);
+                return l;
             }
         };
     });

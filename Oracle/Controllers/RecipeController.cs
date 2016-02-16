@@ -120,11 +120,19 @@ namespace Oracle.Controllers
         {
             return PartialView();
         }
+        public ActionResult showProduct(int id)
+        {
+            return PartialView();
+        }
         public ActionResult find()
         {
             return PartialView();
         }
         public ActionResult forbidden()
+        {
+            return PartialView();
+        }
+        public ActionResult search()
         {
             return PartialView();
         }

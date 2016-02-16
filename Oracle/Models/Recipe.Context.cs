@@ -39,5 +39,6 @@ namespace Oracle.Models
         public DbSet<user> users { get; set; }
         public DbSet<measurement_with_type> measurement_with_type { get; set; }
         public DbSet<nutritional_value_details> nutritional_value_details { get; set; }
+        public DbSet<category> categories { get; set; }
     }
 }

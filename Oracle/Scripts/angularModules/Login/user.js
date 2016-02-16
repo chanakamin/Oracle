@@ -33,6 +33,7 @@
                 url: "Login/register",
             }).then(function (data) {
                 user = this;
+                return true;
             });
         }
         User.prototype.unregister = function () {
@@ -90,6 +91,14 @@
             guest: function () {
                 user = { id: 0, name: 'guest' };
             },
+            signin: function (name, password, email) {
+                return this.addUser(name, password, email).then(function (data) {
+                    if(data == true)
+                        return user.register();
+                    return data;
+                });
+            },
+
         };
     }
     angular.module('LoginApp').factory('userFactory', ['$http', '$location', fact]);

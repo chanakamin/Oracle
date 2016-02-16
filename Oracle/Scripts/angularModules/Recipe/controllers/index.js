@@ -1,14 +1,23 @@
 ﻿(function () {
     // controller for index page
-    function ctrl($scope, $location, $rootScope, resourcesFactory) {
-        $scope.link = function (page) {
+    function ctrl($scope, $location, $rootScope, resourcesFactory,uf) {
+        $scope.part = 'welcome';
+        $scope.user = uf.getUser();
+        $scope.link = function (page,hash) {
             if (angular.isObject(event))
                 event.preventDefault();
             $location.path(page);
-            $scope.title = $scope.words[page];
+            if (!hash)
+                hash = '';
+                $location.hash(hash);
+                $scope.title = $scope.words[page];
+                $scope.part = page;
         };
         $scope.logout = function () {
-            window.location.href = '/Login/Logout?view=true';
+            if (angular.isObject(event))
+                event.preventDefault();
+            //window.location.search = 'view=true';
+            window.location.href = 'Login/Logout?view=true';
         }
         $scope.changePart = function (part) {  
         }
@@ -18,10 +27,10 @@
             reslist: 'Recipes List',
             recipes: 'Recipes',
             'new': 'New Recipe',
+            approve: 'Approve',
+            search: 'Search',
         };
-        
-        
     }
-    angular.module("controllers").controller("indexCtrl", ['$scope', '$location', '$rootScope', 'resourcesFactory', ctrl]);
+    angular.module("controllers").controller("indexCtrl", ['$scope', '$location', '$rootScope', 'resourcesFactory','userFactory', ctrl]);
 })();
 

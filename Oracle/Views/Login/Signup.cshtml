@@ -1,9 +1,9 @@
 ﻿<form ng-if="oper" name="newUser" ng-model="newUser" ng-submit="signup()">
     <h3>{{operation}}</h3>
     <p>{{message}}</p>
-    <input type="text" ng-model="user.name" placeholder="name" name="name" required="required"/>
-    <input type="password" ng-model="user.password" placeholder="password" name="password" required="required"/>
-    <input type="email" ng-model="user.email" placeholder="Email" name="email"/>
+    <input autocomplete="off" type="text" ng-model="user.name" placeholder="name" name="name" required="required"/>
+    <input autocomplete="off" type="password" ng-model="user.password" placeholder="password" name="password" required="required"/>
+    <input autocomplete="off" type="email" ng-model="user.email" placeholder="Email" name="email"/>
     <button type="submit">{{words.ok}}</button>
     <button type="button" ng-click="link('/')">{{words.cancel}}</button>
 </form>

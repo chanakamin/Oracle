@@ -79,6 +79,8 @@
     <EntitySetMapping Name="recipes">
       <EntityTypeMapping TypeName="recipeModel.recipe">
         <MappingFragment StoreEntitySet="recipe">
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="category" ColumnName="category" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -88,7 +90,6 @@
           <ScalarProperty Name="preparation" ColumnName="preparation" />
           <ScalarProperty Name="tips" ColumnName="tips" />
           <ScalarProperty Name="approved" ColumnName="approved" />
-          <ScalarProperty Name="photo" ColumnName="photo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -149,6 +150,14 @@
           <ScalarProperty Name="measurementName" ColumnName="measurementName" />
           <ScalarProperty Name="alias" ColumnName="alias" />
           <ScalarProperty Name="mustable" ColumnName="mustable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="recipeModel.category">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

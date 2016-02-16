@@ -9,13 +9,16 @@
         <label for="Description" class="sr-only">Description</label>
         <input  id="productDescription" ng-model="product.description"  type="text" class="form-control" placeholder="Description" aria-labelledby="Description" />
     </div>
-     <div class="input-group">
+     <div class="input-group-sm">
         <label for="mgWeight" class="sr-only">Milligram Weight</label>
         <input id="mgWeight" type="number" class="form-control" placeholder="Milligram Weight" step="0.01" ng-model="product.weight_in_volume" aria-labelledby="Milligram Weight" />
     </div>
-    <div class="input-group">
+    <div class="input-group-sm col-xs-10">
         <label for="mgWeight" class="sr-only"> Measurement type</label>
-        <select ng-model="product.nutritional_per" default-option="select measurement type" ng-options="type.id as type.measure_type1 for type in measureTypes" ></select>
+        <select class="form-control" ng-model="product.nutritional_per" default-option="select measurement type" ng-options="type.id as type.measure_type1 for type in measureTypes" ></select>
+    </div>
+    <div class="input-group-sm">
+        <input type="submit" value="Create" class="form-controll" />
     </div>
     <label for="NutritionalValue" class=" sr-only">Nutritional Value</label>
     <div id="NutritionalValue" aria-labelledby="Nutritional Value" class="table-responsive col-xs-12">
@@ -30,17 +33,14 @@
                 <tr ng-repeat="nut in product.mustNutrition">
                     <td>{{ nut.name }}({{ nut.alias }} ):</td>
                     <td>
-                        <div class="input-group">
+                        <div class="input-group-sm">
                             <input type="number" step="0.1" ng-model="nut.amount" class="form-control" aria-labelledby="Servings" />
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+    </div>    
 </form>
 <div class=" container-fluid">
     <div class="modal fade" id="mdlSubmit" tabindex="-1" role="dialog" data-keyboard="true" aria-labelledby="mdlSubmitLabel">

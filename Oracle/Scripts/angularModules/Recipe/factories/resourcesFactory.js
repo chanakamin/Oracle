@@ -30,6 +30,12 @@
                         return data;
                     });
             },
+            updateResource: function (action, data) {
+                return $http.put("Data/" + action, data)
+                    .then(function (data) {
+                        return data.data;
+                    });
+            },
             getData: function (action) {
                 return $http.get('Data/' + action).then(function (data) {
                     return data.data;

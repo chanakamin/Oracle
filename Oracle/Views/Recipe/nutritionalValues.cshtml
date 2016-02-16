@@ -8,10 +8,10 @@
     <tbody>
         <tr ng-repeat="nut in nutritional">
             <td>
-                {{::nut.name }}
+                {{::nut.name}}
             </td>
             <td>
-                {{ nut.value }}
+                {{ nut.value|number:2 |number}}
             </td>
         </tr>
     </tbody>

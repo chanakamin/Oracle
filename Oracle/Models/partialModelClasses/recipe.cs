@@ -44,7 +44,9 @@ namespace Oracle.Models
                 approved = this.approved,
                 instructions = this.instructions,
                 preparation = this.preparation,
-                description = this.description
+                description = this.description,
+                category1 = re.categories.FirstOrDefault(c=>c.id==this.category).getSerialize(),
+                category = this.category
             };
             return r;
         }

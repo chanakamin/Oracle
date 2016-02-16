@@ -74,11 +74,13 @@
             logout: 'Log out',
             enter: 'Enter',
             guest: 'Continue as guest',
+            user: 'User',
+            manager: 'Manager',
         };
         $scope.user = userFactory.getUser();
         $scope.signup = function () {
             user = $scope.user;
-            userFactory.addUser(user.name, user.password, user.email)
+            userFactory.signin(user.name, user.password, user.email)
                 .then(function (success) {
                     if (success == true)
                         direct('Recipe');

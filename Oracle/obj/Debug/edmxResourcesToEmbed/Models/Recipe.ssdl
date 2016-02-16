@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="recipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="equipment_in_recipe">
     <Key>
       <PropertyRef Name="recipe_id" />
@@ -82,7 +89,8 @@
     <Property Name="preparation" Type="nvarchar" MaxLength="50" />
     <Property Name="tips" Type="nvarchar(max)" />
     <Property Name="approved" Type="bit" Nullable="false" />
-    <Property Name="photo" Type="image" />
+    <Property Name="category" Type="int" Nullable="false" />
+    <Property Name="photo" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="recipe_for_user">
     <Key>
@@ -110,7 +118,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="nvarchar" MaxLength="9" Nullable="false" />
-    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
     <Property Name="user_or_manager" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
@@ -314,6 +322,18 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_recipe_categories">
+    <End Role="categories" Type="Self.categories" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_recipe_for_user_recipe">
     <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
     <End Role="recipe_for_user" Type="Self.recipe_for_user" Multiplicity="*" />
@@ -339,6 +359,7 @@ warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not hav
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="recipeModelStoreContainer">
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="equipment_in_recipe" EntityType="Self.equipment_in_recipe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="measure_type" EntityType="Self.measure_type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="measurements" EntityType="Self.measurements" Schema="dbo" store:Type="Tables" />
@@ -425,6 +446,10 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
     <AssociationSet Name="FK_products_user" Association="Self.FK_products_user">
       <End Role="user" EntitySet="user" />
       <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recipe_categories" Association="Self.FK_recipe_categories">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="recipe" EntitySet="recipe" />
     </AssociationSet>
     <AssociationSet Name="FK_recipe_for_user_recipe" Association="Self.FK_recipe_for_user_recipe">
       <End Role="recipe" EntitySet="recipe" />

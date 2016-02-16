@@ -1,22 +1,33 @@
 ﻿@model Oracle.Models.recipe
         <!--a place for tips-->
-        <div class="col-xs-2" >
+        <div class="col-xs-5" >
             <div class="well">
-                <h1>Just click on one of the Recipes in the list</h1>                   
+                <search-recipe search-result="recipes.search"></search-recipe>
             </div>
         </div>
 
         <!--a place for text-->
-<div class="col-xs-7" >
-    <div ng-repeat="recipe in recipes" ng-click="recipe.show()" >
-        <label>{{recipe.name}}</label>
-        <p>{{recipe.description}}</p>
-    </div>
-
-
+<div class="col-xs-3" >   
+    <h5>Show recipes from Category:</h5>
+    <select ng-model="recipes.cat" ng-change="recipes.change()"
+        ng-options="cat.name for cat in recipes.categories track by cat.id"></select>
+    <ul>
+        <li ng-repeat="cat in recipes.categories track by cat.id">
+            <button type="button" ng-click="recipes.change(cat)">{{cat.name}}</button>
+        </li>
+    </ul>
  </div>
         <!--this is a disapearing menu (how to do? toggle?--check.)-->
-<div class="col-xs-3" >
+<div class="col-xs-4" >
+    <ul>
+        <li ng-repeat="group in recipes.shown">
+            <h3>{{group.name}}</h3>
+            <a href="#" ng-repeat="recipe in group.list track by recipe.id" ng-click="recipe.show()" >
+                <label>{{recipe.name}}</label>
+                <p>{{recipe.description}}</p>
+            </a>
+        </li>
+    </ul>     
 </div>
 
 
