@@ -33,9 +33,9 @@ namespace Oracle.Models
         public int category { get; set; }
         public string photo { get; set; }
     
+        public virtual category category1 { get; set; }
         public virtual ICollection<equipment_in_recipe> equipment_in_recipe { get; set; }
         public virtual ICollection<products_in_recipe> products_in_recipe { get; set; }
         public virtual ICollection<recipe_for_user> recipe_for_user { get; set; }
-        public virtual category category1 { get; set; }
     }
 }

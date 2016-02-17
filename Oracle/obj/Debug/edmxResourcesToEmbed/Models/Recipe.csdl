@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="recipeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
+  </EntityType>
   <EntityType Name="equipment_in_recipe">
     <Key>
       <PropertyRef Name="recipe_id" />
@@ -105,12 +113,12 @@
     <Property Name="preparation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="tips" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="category" Type="Int32" Nullable="false" />
+    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="category1" Relationship="Self.FK_recipe_categories" FromRole="recipe" ToRole="categories" />
     <NavigationProperty Name="equipment_in_recipe" Relationship="Self.FK_equipment_in_recipe_recipe" FromRole="recipe" ToRole="equipment_in_recipe" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_recipe" FromRole="recipe" ToRole="products_in_recipe" />
     <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_recipe" FromRole="recipe" ToRole="recipe_for_user" />
-    <Property Name="category" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="category1" Relationship="recipeModel.FK_recipe_categories" FromRole="recipe" ToRole="category" />
-    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="recipe_for_user">
     <Key>
@@ -180,6 +188,18 @@
     <Property Name="alias" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="mustable" Type="Boolean" Nullable="false" />
   </EntityType>
+  <Association Name="FK_recipe_categories">
+    <End Role="categories" Type="Self.category" Multiplicity="1" />
+    <End Role="recipe" Type="Self.recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_equipment_in_recipe_recipe">
     <End Role="recipe" Type="Self.recipe" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -367,6 +387,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="recipeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categories" EntityType="Self.category" />
     <EntitySet Name="equipment_in_recipe" EntityType="Self.equipment_in_recipe" />
     <EntitySet Name="measure_type" EntityType="Self.measure_type" />
     <EntitySet Name="measurements" EntityType="Self.measurement" />
@@ -380,6 +401,10 @@
     <EntitySet Name="users" EntityType="Self.user" />
     <EntitySet Name="measurement_with_type" EntityType="Self.measurement_with_type" />
     <EntitySet Name="nutritional_value_details" EntityType="Self.nutritional_value_details" />
+    <AssociationSet Name="FK_recipe_categories" Association="Self.FK_recipe_categories">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="recipe" EntitySet="recipes" />
+    </AssociationSet>
     <AssociationSet Name="FK_equipment_in_recipe_recipe" Association="Self.FK_equipment_in_recipe_recipe">
       <End Role="recipe" EntitySet="recipes" />
       <End Role="equipment_in_recipe" EntitySet="equipment_in_recipe" />
@@ -440,30 +465,5 @@
       <End Role="user" EntitySet="users" />
       <End Role="recipe_for_user" EntitySet="recipe_for_user" />
     </AssociationSet>
-    <EntitySet Name="categories" EntityType="recipeModel.category" />
-    <AssociationSet Name="FK_recipe_categories" Association="recipeModel.FK_recipe_categories">
-      <End Role="category" EntitySet="categories" />
-      <End Role="recipe" EntitySet="recipes" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="category">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="recipes" Relationship="recipeModel.FK_recipe_categories" FromRole="category" ToRole="recipe" />
-  </EntityType>
-  <Association Name="FK_recipe_categories">
-    <End Type="recipeModel.category" Role="category" Multiplicity="1" />
-    <End Type="recipeModel.recipe" Role="recipe" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="category">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="recipe">
-        <PropertyRef Name="category" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

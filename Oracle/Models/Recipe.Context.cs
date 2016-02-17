@@ -18,7 +18,6 @@ namespace Oracle.Models
         public recipeEntities()
             : base("name=recipeEntities")
         {
-            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,6 +25,7 @@ namespace Oracle.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<category> categories { get; set; }
         public DbSet<equipment_in_recipe> equipment_in_recipe { get; set; }
         public DbSet<measure_type> measure_type { get; set; }
         public DbSet<measurement> measurements { get; set; }
@@ -39,6 +39,5 @@ namespace Oracle.Models
         public DbSet<user> users { get; set; }
         public DbSet<measurement_with_type> measurement_with_type { get; set; }
         public DbSet<nutritional_value_details> nutritional_value_details { get; set; }
-        public DbSet<category> categories { get; set; }
     }
 }
