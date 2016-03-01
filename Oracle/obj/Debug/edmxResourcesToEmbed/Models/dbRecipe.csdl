@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="recipeModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="Self.FK__aspnet_Me__Appli__2DE6D218" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pa__Appli__671F4F74" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="Self.FK__aspnet_Ro__Appli__503BEA1C" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Us__Appli__19DFD96B" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobilePIN" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+    <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Me__Appli__2DE6D218" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Me__UserI__2EDAF651" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="Path" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Pa__Appli__671F4F74" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="Self.FK__aspnet_Pe__PathI__6EC0713C" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="Self.FK__aspnet_Pe__PathI__74794A92" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="PageSettings" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pe__PathI__6EC0713C" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="PageSettings" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pe__PathI__74794A92" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Pe__UserI__756D6ECB" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="PropertyNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PropertyValuesString" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PropertyValuesBinary" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Pr__UserI__44CA3770" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredRoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Ro__Appli__503BEA1C" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompatibleSchemaVersion" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Us__Appli__19DFD96B" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="Self.FK__aspnet_Me__UserI__2EDAF651" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="Self.FK__aspnet_Pe__UserI__756D6ECB" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+    <NavigationProperty Name="aspnet_Profile" Relationship="Self.FK__aspnet_Pr__UserI__44CA3770" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" />
+    <Property Name="EventTime" Type="DateTime" Nullable="false" />
+    <Property Name="EventType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventSequence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MachineName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="products_in_company" Relationship="Self.FK_products_in_company_company" FromRole="company" ToRole="products_in_company" />
+  </EntityType>
+  <EntityType Name="equipment_in_recipe">
+    <Key>
+      <PropertyRef Name="recipe_id" />
+      <PropertyRef Name="equipment_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="equipment_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="recipe" Relationship="Self.FK_equipment_in_recipe_recipe" FromRole="equipment_in_recipe" ToRole="recipe" />
+    <NavigationProperty Name="special_equipment" Relationship="Self.FK_equipment_in_recipe_special_equipment" FromRole="equipment_in_recipe" ToRole="special_equipment" />
+  </EntityType>
+  <EntityType Name="measure_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="measure_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="measurements" Relationship="Self.FK_measurements_measure_type" FromRole="measure_type" ToRole="measurements" />
+  </EntityType>
+  <EntityType Name="measurement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="measure_type_id" Type="Int32" Nullable="false" />
+    <Property Name="measurement_id" Type="Int32" />
+    <Property Name="amount" Type="Double" />
+    <NavigationProperty Name="measure_type" Relationship="Self.FK_measurements_measure_type" FromRole="measurements" ToRole="measure_type" />
+    <NavigationProperty Name="measurements1" Relationship="Self.FK_measurements_measurements" FromRole="measurements" ToRole="measurements1" />
+    <NavigationProperty Name="measurement1" Relationship="Self.FK_measurements_measurements" FromRole="measurements1" ToRole="measurements" />
+    <NavigationProperty Name="nutritional_value" Relationship="Self.FK_nutritional_value_measurements" FromRole="measurements" ToRole="nutritional_value" />
+    <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_measurements" FromRole="measurements" ToRole="products_in_recipe" />
+    <NavigationProperty Name="products" Relationship="Self.FK_products_measurements" FromRole="measurements" ToRole="products" />
+    <NavigationProperty Name="products1" Relationship="Self.FK_products_measurements1" FromRole="measurements" ToRole="products" />
+  </EntityType>
+  <EntityType Name="nutritional_value">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="measurements_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="measurement" Relationship="Self.FK_nutritional_value_measurements" FromRole="nutritional_value" ToRole="measurements" />
+    <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_nutritional_value" FromRole="nutritional_value" ToRole="products_in_nutritional_value" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="measurements_id_volume" Type="Int32" />
+    <Property Name="measurements_id_weight" Type="Int32" />
+    <Property Name="amount_weight_in_volume" Type="Int32" />
+    <NavigationProperty Name="measurement" Relationship="Self.FK_products_measurements" FromRole="products" ToRole="measurements" />
+    <NavigationProperty Name="measurement1" Relationship="Self.FK_products_measurements1" FromRole="products" ToRole="measurements" />
+    <NavigationProperty Name="products_in_company" Relationship="Self.FK_products_in_company_products" FromRole="products" ToRole="products_in_company" />
+  </EntityType>
+  <EntityType Name="products_in_company">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="company_id" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="company" Relationship="Self.FK_products_in_company_company" FromRole="products_in_company" ToRole="company" />
+    <NavigationProperty Name="product" Relationship="Self.FK_products_in_company_products" FromRole="products_in_company" ToRole="products" />
+    <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_company_products_in_nutritional_value" FromRole="products_in_company" ToRole="products_in_nutritional_value" />
+    <NavigationProperty Name="user" Relationship="Self.FK_products_in_company_user" FromRole="products_in_company" ToRole="user" />
+    <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products_in_company" FromRole="products_in_company" ToRole="products_in_recipe" />
+  </EntityType>
+  <EntityType Name="products_in_nutritional_value">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="nutritional_value_id" Type="Int32" Nullable="false" />
+    <Property Name="amount_per_100" Type="Double" Nullable="false" />
+    <NavigationProperty Name="nutritional_value" Relationship="Self.FK_products_in_nutritional_value_nutritional_value" FromRole="products_in_nutritional_value" ToRole="nutritional_value" />
+    <NavigationProperty Name="products_in_company" Relationship="Self.FK_products_in_company_products_in_nutritional_value" FromRole="products_in_nutritional_value" ToRole="products_in_company" />
+  </EntityType>
+  <EntityType Name="products_in_recipe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="measurements_id" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Double" Nullable="false" />
+    <NavigationProperty Name="measurement" Relationship="Self.FK_products_in_recipe_measurements" FromRole="products_in_recipe" ToRole="measurements" />
+    <NavigationProperty Name="products_in_company" Relationship="Self.FK_products_in_recipe_products_in_company" FromRole="products_in_recipe" ToRole="products_in_company" />
+    <NavigationProperty Name="recipe" Relationship="Self.FK_products_in_recipe_recipe" FromRole="products_in_recipe" ToRole="recipe" />
+  </EntityType>
+  <EntityType Name="recipe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="preparation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="time" Type="Time" />
+    <Property Name="portions" Type="Int32" />
+    <Property Name="tips" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="equipment_in_recipe" Relationship="Self.FK_equipment_in_recipe_recipe" FromRole="recipe" ToRole="equipment_in_recipe" />
+    <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_recipe" FromRole="recipe" ToRole="products_in_recipe" />
+    <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_recipe" FromRole="recipe" ToRole="recipe_for_user" />
+  </EntityType>
+  <EntityType Name="recipe_for_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="recipe" Relationship="Self.FK_recipe_for_user_recipe" FromRole="recipe_for_user" ToRole="recipe" />
+    <NavigationProperty Name="user" Relationship="Self.FK_recipe_for_user_user" FromRole="recipe_for_user" ToRole="user" />
+  </EntityType>
+  <EntityType Name="special_equipment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="equipment_in_recipe" Relationship="Self.FK_equipment_in_recipe_special_equipment" FromRole="special_equipment" ToRole="equipment_in_recipe" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_or_manager" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="products_in_company" Relationship="Self.FK_products_in_company_user" FromRole="user" ToRole="products_in_company" />
+    <NavigationProperty Name="recipe_for_user" Relationship="Self.FK_recipe_for_user_user" FromRole="user" ToRole="recipe_for_user" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__2DE6D218">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__671F4F74">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__503BEA1C">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__19DFD96B">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__2EDAF651">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__6EC0713C">
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="1" />
+    <End Role="aspnet_PersonalizationAllUsers" Type="Self.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__74794A92">
+    <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__756D6ECB">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__44CA3770">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Profile" Type="Self.aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_company">
+    <End Role="company" Type="Self.company" Multiplicity="0..1" />
+    <End Role="products_in_company" Type="Self.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="company_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_in_recipe_recipe">
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="equipment_in_recipe" Type="Self.equipment_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment_in_recipe">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_in_recipe_special_equipment">
+    <End Role="special_equipment" Type="Self.special_equipment" Multiplicity="1" />
+    <End Role="equipment_in_recipe" Type="Self.equipment_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="special_equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment_in_recipe">
+        <PropertyRef Name="equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_measurements_measure_type">
+    <End Role="measure_type" Type="Self.measure_type" Multiplicity="1" />
+    <End Role="measurements" Type="Self.measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measure_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="measurements">
+        <PropertyRef Name="measure_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_measurements_measurements">
+    <End Role="measurements" Type="Self.measurement" Multiplicity="0..1" />
+    <End Role="measurements1" Type="Self.measurement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="measurements1">
+        <PropertyRef Name="measurement_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_nutritional_value_measurements">
+    <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
+    <End Role="nutritional_value" Type="Self.nutritional_value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="nutritional_value">
+        <PropertyRef Name="measurements_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_measurements">
+    <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="Self.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="measurements_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_measurements">
+    <End Role="measurements" Type="Self.measurement" Multiplicity="0..1" />
+    <End Role="products" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="measurements_id_volume" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_measurements1">
+    <End Role="measurements" Type="Self.measurement" Multiplicity="0..1" />
+    <End Role="products" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="measurements">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="measurements_id_weight" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_nutritional_value_nutritional_value">
+    <End Role="nutritional_value" Type="Self.nutritional_value" Multiplicity="1" />
+    <End Role="products_in_nutritional_value" Type="Self.products_in_nutritional_value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nutritional_value">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_nutritional_value">
+        <PropertyRef Name="nutritional_value_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_products">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="products_in_company" Type="Self.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_products_in_nutritional_value">
+    <End Role="products_in_nutritional_value" Type="Self.products_in_nutritional_value" Multiplicity="1" />
+    <End Role="products_in_company" Type="Self.products_in_company" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="products_in_nutritional_value">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_company_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="products_in_company" Type="Self.products_in_company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_company">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_products_in_company">
+    <End Role="products_in_company" Type="Self.products_in_company" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="Self.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products_in_company">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_in_recipe_recipe">
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="products_in_recipe" Type="Self.products_in_recipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products_in_recipe">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recipe_for_user_recipe">
+    <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
+    <End Role="recipe_for_user" Type="Self.recipe_for_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recipe">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe_for_user">
+        <PropertyRef Name="recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recipe_for_user_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="recipe_for_user" Type="Self.recipe_for_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="recipe_for_user">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="aspnet_UsersInRoles">
+    <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="RecipeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" />
+    <EntitySet Name="aspnet_Membership" EntityType="Self.aspnet_Membership" />
+    <EntitySet Name="aspnet_Paths" EntityType="Self.aspnet_Paths" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="Self.aspnet_PersonalizationAllUsers" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="Self.aspnet_PersonalizationPerUser" />
+    <EntitySet Name="aspnet_Profile" EntityType="Self.aspnet_Profile" />
+    <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" />
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" />
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="equipment_in_recipe" EntityType="Self.equipment_in_recipe" />
+    <EntitySet Name="measure_type" EntityType="Self.measure_type" />
+    <EntitySet Name="measurements" EntityType="Self.measurement" />
+    <EntitySet Name="nutritional_value" EntityType="Self.nutritional_value" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="products_in_company" EntityType="Self.products_in_company" />
+    <EntitySet Name="products_in_nutritional_value" EntityType="Self.products_in_nutritional_value" />
+    <EntitySet Name="products_in_recipe" EntityType="Self.products_in_recipe" />
+    <EntitySet Name="recipes" EntityType="Self.recipe" />
+    <EntitySet Name="recipe_for_user" EntityType="Self.recipe_for_user" />
+    <EntitySet Name="special_equipment" EntityType="Self.special_equipment" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__2DE6D218" Association="Self.FK__aspnet_Me__Appli__2DE6D218">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__671F4F74" Association="Self.FK__aspnet_Pa__Appli__671F4F74">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__503BEA1C" Association="Self.FK__aspnet_Ro__Appli__503BEA1C">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__19DFD96B" Association="Self.FK__aspnet_Us__Appli__19DFD96B">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__2EDAF651" Association="Self.FK__aspnet_Me__UserI__2EDAF651">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__6EC0713C" Association="Self.FK__aspnet_Pe__PathI__6EC0713C">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__74794A92" Association="Self.FK__aspnet_Pe__PathI__74794A92">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__756D6ECB" Association="Self.FK__aspnet_Pe__UserI__756D6ECB">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__44CA3770" Association="Self.FK__aspnet_Pr__UserI__44CA3770">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_company" Association="Self.FK_products_in_company_company">
+      <End Role="company" EntitySet="companies" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_in_recipe_recipe" Association="Self.FK_equipment_in_recipe_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="equipment_in_recipe" EntitySet="equipment_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_in_recipe_special_equipment" Association="Self.FK_equipment_in_recipe_special_equipment">
+      <End Role="special_equipment" EntitySet="special_equipment" />
+      <End Role="equipment_in_recipe" EntitySet="equipment_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_measurements_measure_type" Association="Self.FK_measurements_measure_type">
+      <End Role="measure_type" EntitySet="measure_type" />
+      <End Role="measurements" EntitySet="measurements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_measurements_measurements" Association="Self.FK_measurements_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="measurements1" EntitySet="measurements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_nutritional_value_measurements" Association="Self.FK_nutritional_value_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="nutritional_value" EntitySet="nutritional_value" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_measurements" Association="Self.FK_products_in_recipe_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_measurements1" Association="Self.FK_products_measurements1">
+      <End Role="measurements" EntitySet="measurements" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_nutritional_value_nutritional_value" Association="Self.FK_products_in_nutritional_value_nutritional_value">
+      <End Role="nutritional_value" EntitySet="nutritional_value" />
+      <End Role="products_in_nutritional_value" EntitySet="products_in_nutritional_value" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_products" Association="Self.FK_products_in_company_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_products_in_nutritional_value" Association="Self.FK_products_in_company_products_in_nutritional_value">
+      <End Role="products_in_nutritional_value" EntitySet="products_in_nutritional_value" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_company_user" Association="Self.FK_products_in_company_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="products_in_company" EntitySet="products_in_company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_products_in_company" Association="Self.FK_products_in_recipe_products_in_company">
+      <End Role="products_in_company" EntitySet="products_in_company" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_in_recipe_recipe" Association="Self.FK_products_in_recipe_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="products_in_recipe" EntitySet="products_in_recipe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recipe_for_user_recipe" Association="Self.FK_recipe_for_user_recipe">
+      <End Role="recipe" EntitySet="recipes" />
+      <End Role="recipe_for_user" EntitySet="recipe_for_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recipe_for_user_user" Association="Self.FK_recipe_for_user_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="recipe_for_user" EntitySet="recipe_for_user" />
+    </AssociationSet>
+    <AssociationSet Name="aspnet_UsersInRoles" Association="Self.aspnet_UsersInRoles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

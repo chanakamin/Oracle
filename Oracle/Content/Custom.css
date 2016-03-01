@@ -1,0 +1,54 @@
+﻿body {
+   
+}
+.btn-group-vertical{
+    height:100%;
+    
+}
+.col-xs-2{
+   background-color:black;
+}
+.btn-group-vertical{
+   height:100vh;
+}
+.btn-default{
+    background-color:black;
+    color:#520052;
+    height:50%;
+    
+}
+.navbar navbar-inverse navbar-fixed-bottom{
+    background-color:#520052;
+    color:orangered;
+    height:60px;
+}
+.well{
+    background-color:rgba(0,0,0,0.4566545);
+    font-family: FbAspaklarya, Helvetica, Arial, 'SketchFlow Print';
+    color:#990066;
+    margin:10%;
+    padding:10%;
+}
+.navbar-inverse navbar-fixed-bottom{
+    color:orangered;
+    background-color:antiquewhite;
+}
+
+.navbar-header{
+    color:purple;
+}
+
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+
+// Usage as mixins
+.element {
+  .pull-left();
+}
+.another-element {
+  .pull-right();
+}

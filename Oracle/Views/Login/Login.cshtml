@@ -1,0 +1,87 @@
+﻿<div id="login" @*ng-controller="loginCtrl"*@>
+ <div class="col xs-12 hidden-xs col-sm-3 " >
+                <div class="well">
+                    <p>Just click Enter to start.
+                    </p>
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </div>
+                 <div class="well">
+                    <p>
+                        Although we did our best to ensure that this site is compatible to all browsers, for best performance use Chrome. It is totally free! You can 
+                        <a href="https://www.google.com/intl/en/chrome/browser/desktop/index.html">download Chrome</a> Chrome here.
+                    </p>
+                </div>
+                <div class="well">
+                    <p>
+                       Make sure 
+                        <a href="http://activatejavascript.org/en/instructions/chrome">Javascript</a> is enabled.
+                    </p>
+                </div>
+        </div>
+<div class="col-xs-12 col-sm-9" >
+    <div ng-switch="part">
+        <div ng-switch-when="welcome">            
+            <h1 class="large">Welcome.</h1>
+            <h6>We are glad to see you here.</h6>
+        </div>
+        <div ng-switch-when="sign">
+            <form name="newUser" ng-model="newUser" ng-submit="register()">
+                <h3>Enter your name and a password to sign in</h3>
+                <p>Once you are registered you will be able to design your own recipes and upload them</p>
+                <input type="text" ng-model="user.name" placeholder="name" name="name" required="required"/>
+                <input type="password" ng-model="user.password" placeholder="password" name="password" required="required"/>
+                <input type="email" ng-model="user.email" placeholder="Email" name="email"/>
+                <button type="submit">OK</button>
+                <button type="button" ng-click="state('welcome')">Cancel</button>
+            </form>            
+        </div>
+        <div ng-switch-when="guest">
+            <p>Are you sure you want to continue as a guest? you wan't be able to...?</p>
+            <button ng-click="enterAnom()">Continue as a guest</button>
+            <button ng-click="state(0)">cancel</button>
+        </div>
+        <div ng-switch-when="login">
+            <form name="login" ng-model="login" ng-submit="loginUser()">
+                <h3> Enter your name and password to log in </h3>
+                <p>If you are not registered, please sign in</p>
+                <input type="text" ng-model="user.name" name="name" placeholder="Name" required="required"/>
+                <input type="password" name="password" ng-model="user.password" placeholder="password" required="required" />
+                <button type="submit">Log In</button>
+                <button type="button" ng-click="state('welcome')">Cancel</button>
+                <button type="button" ng-click="state('sign')">Sign In</button>
+            </form>
+        </div>
+        <div ng-switch-when="message" ng-switch="message.type">
+            <div ng-switch-when="register_not_mail"></div>
+            <div ng-switch-when="login_guest">
+                <h4>Are you sure you don't want to sign in?</h4>
+                <p>If you continue as a guest you will not be able to upload your own recipes.</p>
+                <button ng-click="login_guest()">I'm sure</button>
+                <button ng-click="state(0)">return</button>
+            </div>
+            <div ng-switch-when="login_incorrect">
+                <h4>The Name and password you entered is not correct.</h4>
+                <p>Did you want to try again?</p>
+                <button type="button" ng-click="help_user()">Help</button>
+                <button type="button" ng-click="state('login')">Yes</button>
+                <button type="button" ng-click="state('welcome')">No</button>
+            </div>
+            <div ng-switch-when="help">
+                <h1></h1>
+                <p>{{help.message}}</p>
+                <button type="button" ng-click="state('welcome')">Return</button>
+            </div>
+            <div ng-switch-when="manager">
+                <p>Are you want to login as a user or as a manager?</p>
+                <button ng-click="$parent.changePart(1)">user</button>
+                <button ng-click="$parent.changePart(2)">manager</button>
+            </div>
+            <div ng-switch-when="enter">
+                <p>Are you sure you want to enter like a guest?</p>
+                <button ng-click="enter()">Yes</button>
+                <button ng-click="enter=false; state('welcome');">return</button>
+            </div>
+        </div>
+    </div>    
+</div>
+

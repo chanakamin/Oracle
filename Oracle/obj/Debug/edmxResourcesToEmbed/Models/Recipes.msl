@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="recipeContextStoreContainer" CdmEntityContainer="recipeEntities">
+    <EntitySetMapping Name="equipment_in_recipe">
+      <EntityTypeMapping TypeName="recipeContext.equipment_in_recipe">
+        <MappingFragment StoreEntitySet="equipment_in_recipe">
+          <ScalarProperty Name="special_equipment1" ColumnName="special_equipment" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="measure_type">
+      <EntityTypeMapping TypeName="recipeContext.measure_type">
+        <MappingFragment StoreEntitySet="measure_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="measure_type1" ColumnName="measure_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="measurements">
+      <EntityTypeMapping TypeName="recipeContext.measurement">
+        <MappingFragment StoreEntitySet="measurements">
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="measure_type_id" ColumnName="measure_type_id" />
+          <ScalarProperty Name="measurement_id" ColumnName="measurement_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nutritional_value">
+      <EntityTypeMapping TypeName="recipeContext.nutritional_value">
+        <MappingFragment StoreEntitySet="nutritional_value">
+          <ScalarProperty Name="mustable" ColumnName="mustable" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="measurements_id" ColumnName="measurements_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="recipeContext.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
+          <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
+          <ScalarProperty Name="amount_weight_in_volume" ColumnName="amount_weight_in_volume" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products_in_nutritional_value">
+      <EntityTypeMapping TypeName="recipeContext.products_in_nutritional_value">
+        <MappingFragment StoreEntitySet="products_in_nutritional_value">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="nutritional_value_id" ColumnName="nutritional_value_id" />
+          <ScalarProperty Name="amount_per_100" ColumnName="amount_per_100" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products_in_recipe">
+      <EntityTypeMapping TypeName="recipeContext.products_in_recipe">
+        <MappingFragment StoreEntitySet="products_in_recipe">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="measurements_id" ColumnName="measurements_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recipes">
+      <EntityTypeMapping TypeName="recipeContext.recipe">
+        <MappingFragment StoreEntitySet="recipe">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="preparation" ColumnName="preparation" />
+          <ScalarProperty Name="instructions" ColumnName="instructions" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="portions" ColumnName="portions" />
+          <ScalarProperty Name="tips" ColumnName="tips" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recipe_for_user">
+      <EntityTypeMapping TypeName="recipeContext.recipe_for_user">
+        <MappingFragment StoreEntitySet="recipe_for_user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="recipeContext.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="recipeContext.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="user_or_manager" ColumnName="user_or_manager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="add_company" FunctionName="recipeContext.Store.add_company" />
+    <FunctionImportMapping FunctionImportName="add_equipment_in_recipe" FunctionName="recipeContext.Store.add_equipment_in_recipe" />
+    <FunctionImportMapping FunctionImportName="add_measure_type" FunctionName="recipeContext.Store.add_measure_type" />
+    <FunctionImportMapping FunctionImportName="add_measurements" FunctionName="recipeContext.Store.add_measurements" />
+    <FunctionImportMapping FunctionImportName="add_nutritional_value" FunctionName="recipeContext.Store.add_nutritional_value" />
+    <FunctionImportMapping FunctionImportName="add_product" FunctionName="recipeContext.Store.add_product" />
+    <FunctionImportMapping FunctionImportName="add_product_in_company" FunctionName="recipeContext.Store.add_product_in_company" />
+    <FunctionImportMapping FunctionImportName="add_products_in_nutritional_value" FunctionName="recipeContext.Store.add_products_in_nutritional_value" />
+    <FunctionImportMapping FunctionImportName="add_products_in_recipe" FunctionName="recipeContext.Store.add_products_in_recipe" />
+    <FunctionImportMapping FunctionImportName="add_products_per_measurement" FunctionName="recipeContext.Store.add_products_per_measurement" />
+    <FunctionImportMapping FunctionImportName="add_products_per_measuremnts" FunctionName="recipeContext.Store.add_products_per_measuremnts" />
+    <FunctionImportMapping FunctionImportName="add_recipe" FunctionName="recipeContext.Store.add_recipe" />
+    <FunctionImportMapping FunctionImportName="add_recipe_for_user" FunctionName="recipeContext.Store.add_recipe_for_user" />
+    <FunctionImportMapping FunctionImportName="add_special_equipment" FunctionName="recipeContext.Store.add_special_equipment" />
+    <FunctionImportMapping FunctionImportName="add_user" FunctionName="recipeContext.Store.add_user" />
+    <FunctionImportMapping FunctionImportName="delete_company" FunctionName="recipeContext.Store.delete_company" />
+    <FunctionImportMapping FunctionImportName="delete_equipment_in_recipe" FunctionName="recipeContext.Store.delete_equipment_in_recipe" />
+    <FunctionImportMapping FunctionImportName="delete_measure_types" FunctionName="recipeContext.Store.delete_measure_types" />
+    <FunctionImportMapping FunctionImportName="delete_measurements" FunctionName="recipeContext.Store.delete_measurements" />
+    <FunctionImportMapping FunctionImportName="delete_nutritional_value" FunctionName="recipeContext.Store.delete_nutritional_value" />
+    <FunctionImportMapping FunctionImportName="delete_product" FunctionName="recipeContext.Store.delete_product" />
+    <FunctionImportMapping FunctionImportName="delete_product_in_company" FunctionName="recipeContext.Store.delete_product_in_company" />
+    <FunctionImportMapping FunctionImportName="delete_product_in_recipe" FunctionName="recipeContext.Store.delete_product_in_recipe" />
+    <FunctionImportMapping FunctionImportName="delete_products_in_nutritional_value" FunctionName="recipeContext.Store.delete_products_in_nutritional_value" />
+    <FunctionImportMapping FunctionImportName="delete_products_in_recipe" FunctionName="recipeContext.Store.delete_products_in_recipe" />
+    <FunctionImportMapping FunctionImportName="delete_recipe" FunctionName="recipeContext.Store.delete_recipe" />
+    <FunctionImportMapping FunctionImportName="delete_recipe_for_user" FunctionName="recipeContext.Store.delete_recipe_for_user" />
+    <FunctionImportMapping FunctionImportName="delete_special_equipment" FunctionName="recipeContext.Store.delete_special_equipment" />
+    <FunctionImportMapping FunctionImportName="delete_user" FunctionName="recipeContext.Store.delete_user" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="recipeContext.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="recipeContext.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="recipeContext.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="recipeContext.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="recipeContext.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="recipeContext.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="recipeContext.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="recipeContext.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="recipeContext.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="update_recipe" FunctionName="recipeContext.Store.update_recipe" />
+    <FunctionImportMapping FunctionImportName="update_special_equipment" FunctionName="recipeContext.Store.update_special_equipment" />
+    <FunctionImportMapping FunctionImportName="update_user" FunctionName="recipeContext.Store.update_user" />
+    <EntitySetMapping Name="measurement_with_type">
+      <EntityTypeMapping TypeName="recipeContext.measurement_with_type">
+        <MappingFragment StoreEntitySet="measurement_with_type">
+          <ScalarProperty Name="measure_type" ColumnName="measure_type" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="measurement_id" ColumnName="measurement_id" />
+          <ScalarProperty Name="measure_type_id" ColumnName="measure_type_id" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="insert_nutritional_Value" FunctionName="recipeContext.Store.insert_nutritional_Value" />
+    <EntitySetMapping Name="nutritional_value_details">
+      <EntityTypeMapping TypeName="recipeContext.nutritional_value_details">
+        <MappingFragment StoreEntitySet="nutritional_value_details">
+          <ScalarProperty Name="mustable" ColumnName="mustable" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="measurementName" ColumnName="measurementName" />
+          <ScalarProperty Name="measurements_id" ColumnName="measurements_id" />
+          <ScalarProperty Name="nutritional_valueName" ColumnName="nutritional_valueName" />
+          <ScalarProperty Name="amount_per_100" ColumnName="amount_per_100" />
+          <ScalarProperty Name="nutritional_value_id" ColumnName="nutritional_value_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="nutritionalForProduct" FunctionName="recipeContext.Store.nutritionalForProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="recipeContext.nutritionalForProduct_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="nutritional_value_id" ColumnName="nutritional_value_id" />
+          <ScalarProperty Name="amount_per_100" ColumnName="amount_per_100" />
+          <ScalarProperty Name="nutritional_valueName" ColumnName="nutritional_valueName" />
+          <ScalarProperty Name="measurements_id" ColumnName="measurements_id" />
+          <ScalarProperty Name="measurementName" ColumnName="measurementName" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

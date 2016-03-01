@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_LoginLayout.cshtml";  
+ }
+
+<div id="login" @*ng-controller="loginCtrl"*@>
+ <div class="col xs-12 hidden-xs col-sm-3 " >
+                <div class="well">
+                    <p>Just click Enter to start.
+                    </p>
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </div>
+                 <div class="well">
+                    <p>
+                        Although we did our best to ensure that this site is compatible to all browsers, for best performance use Chrome. It is totally free! You can 
+                        <a href="https://www.google.com/intl/en/chrome/browser/desktop/index.html">download Chrome</a> Chrome here.
+                    </p>
+                </div>
+                <div class="well">
+                    <p>
+                       Make sure 
+                        <a href="http://activatejavascript.org/en/instructions/chrome">Javascript</a> is enabled.
+                    </p>
+                </div>
+        </div>
+<div class="col-xs-12 col-sm-9" >
+     <div ng-view="">
+
+     </div>
+</div>
+
+ <nav id="welcomeMenu" class="col-xs-12 col-sm-5">
+        <div>
+            <ul class="vertical">
+                <li><a href="#" ng-click="link('signin')"><span class="glyphicon glyphicon-log-in"></span>{{words.login}}</a></li>
+                <li><a href="#" ng-click="link('guest')"><span class="glyphicon glyphicon-user"></span>{{words.guest}}</a></li>
+            </ul>            
+        </div>     
+    </nav>
+</div>
+
