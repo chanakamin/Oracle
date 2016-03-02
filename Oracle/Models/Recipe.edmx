@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="recipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="recipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="id" />
@@ -129,7 +129,7 @@
           <Property Name="user_or_manager" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'recipe.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="measurement_with_type">
           <Key>
             <PropertyRef Name="id" />
@@ -145,7 +145,7 @@ warning 6002: The table/view 'recipe.dbo.measurement_with_type' does not have a 
           <Property Name="measure_type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="nutritional_value_details">
           <Key>
             <PropertyRef Name="id" />
@@ -467,7 +467,8 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
             <End Role="recipe_for_user" EntitySet="recipe_for_user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="recipeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -477,8 +478,8 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
         </EntityType>
         <EntityType Name="equipment_in_recipe">
           <Key>
@@ -535,19 +536,19 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
-          <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
           <Property Name="amount_weight_in_volume" Type="Double" Nullable="false" />
+          <Property Name="unit_amount" Type="Double" />
           <Property Name="nutritional_per" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="approved" Type="Boolean" Nullable="false" />
+          <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
+          <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
           <NavigationProperty Name="measure_type" Relationship="Self.FK_products_measure_type" FromRole="products" ToRole="measure_type" />
           <NavigationProperty Name="measurement" Relationship="Self.FK_products_measurements" FromRole="products" ToRole="measurements" />
           <NavigationProperty Name="measurement1" Relationship="Self.FK_products_measurements1" FromRole="products" ToRole="measurements" />
           <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_products" FromRole="products" ToRole="products_in_nutritional_value" />
           <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products" FromRole="products" ToRole="products_in_recipe" />
           <NavigationProperty Name="user" Relationship="Self.FK_products_user" FromRole="products" ToRole="user" />
-          <Property Name="unit_amount" Type="Double" />
         </EntityType>
         <EntityType Name="products_in_nutritional_value">
           <Key>
@@ -948,9 +949,9 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <EntitySetMapping Name="categories">
             <EntityTypeMapping TypeName="recipeModel.category">
               <MappingFragment StoreEntitySet="categories">
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -996,16 +997,16 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="recipeModel.product">
               <MappingFragment StoreEntitySet="products">
-                <ScalarProperty Name="unit_amount" ColumnName="unit_amount" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
-                <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
                 <ScalarProperty Name="amount_weight_in_volume" ColumnName="amount_weight_in_volume" />
+                <ScalarProperty Name="unit_amount" ColumnName="unit_amount" />
                 <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
+                <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
+                <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

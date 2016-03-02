@@ -6,8 +6,8 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
   </EntityType>
   <EntityType Name="equipment_in_recipe">
     <Key>
@@ -64,19 +64,19 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
-    <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
     <Property Name="amount_weight_in_volume" Type="Double" Nullable="false" />
+    <Property Name="unit_amount" Type="Double" />
     <Property Name="nutritional_per" Type="Int32" Nullable="false" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="approved" Type="Boolean" Nullable="false" />
+    <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
+    <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
     <NavigationProperty Name="measure_type" Relationship="Self.FK_products_measure_type" FromRole="products" ToRole="measure_type" />
     <NavigationProperty Name="measurement" Relationship="Self.FK_products_measurements" FromRole="products" ToRole="measurements" />
     <NavigationProperty Name="measurement1" Relationship="Self.FK_products_measurements1" FromRole="products" ToRole="measurements" />
     <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_products" FromRole="products" ToRole="products_in_nutritional_value" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products" FromRole="products" ToRole="products_in_recipe" />
     <NavigationProperty Name="user" Relationship="Self.FK_products_user" FromRole="products" ToRole="user" />
-    <Property Name="unit_amount" Type="Double" />
   </EntityType>
   <EntityType Name="products_in_nutritional_value">
     <Key>

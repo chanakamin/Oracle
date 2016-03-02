@@ -4,9 +4,9 @@
     <EntitySetMapping Name="categories">
       <EntityTypeMapping TypeName="recipeModel.category">
         <MappingFragment StoreEntitySet="categories">
-          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,16 +52,16 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="recipeModel.product">
         <MappingFragment StoreEntitySet="products">
-          <ScalarProperty Name="unit_amount" ColumnName="unit_amount" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
-          <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
           <ScalarProperty Name="amount_weight_in_volume" ColumnName="amount_weight_in_volume" />
+          <ScalarProperty Name="unit_amount" ColumnName="unit_amount" />
           <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
+          <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

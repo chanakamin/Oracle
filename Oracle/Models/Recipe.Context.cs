@@ -18,7 +18,6 @@ namespace Oracle.Models
         public recipeEntities()
             : base("name=recipeEntities")
         {
-            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

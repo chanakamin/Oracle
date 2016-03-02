@@ -23,13 +23,13 @@ namespace Oracle.Models
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public int measurements_id_volume { get; set; }
-        public int measurements_id_weight { get; set; }
         public double amount_weight_in_volume { get; set; }
+        public Nullable<double> unit_amount { get; set; }
         public int nutritional_per { get; set; }
         public int user_id { get; set; }
         public bool approved { get; set; }
-        public Nullable<double> unit_amount { get; set; }
+        public int measurements_id_volume { get; set; }
+        public int measurements_id_weight { get; set; }
     
         public virtual measure_type measure_type { get; set; }
         public virtual measurement measurement { get; set; }
