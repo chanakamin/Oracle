@@ -2,7 +2,8 @@
     function ctrl($scope, RecipesFactory) {
         var r = RecipesFactory.getCurrentRecipe();
         RecipesFactory.setObjects(r);
-        $scope.recipe = r
+        $scope.recipe = r;
+        var originalProducts = r.products.getCopy();
     }
     angular.module('controllers').controller('showRecipeCtrl', ['$scope', 'RecipesFactory', ctrl]);
 

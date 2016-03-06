@@ -1,8 +1,11 @@
 ﻿(function () {
     // controller for index page
     function ctrl($scope, $location, $rootScope, resourcesFactory,uf) {
-        $scope.part = 'welcome';
-        $scope.user = uf.getUser();
+        $scope.part = $scope.title = 'welcome';
+        $scope.$on('init', function () {
+            $scope.user = uf.getUser();
+           // $scope.user.name = $scope.user.name.camelize();
+        });
         $scope.link = function (page,hash) {
             if (angular.isObject(event))
                 event.preventDefault();

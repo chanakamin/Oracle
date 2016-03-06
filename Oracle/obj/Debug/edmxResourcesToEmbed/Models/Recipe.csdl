@@ -43,8 +43,6 @@
     <NavigationProperty Name="measurement1" Relationship="Self.FK_measurements_measurements" FromRole="measurements1" ToRole="measurements" />
     <NavigationProperty Name="nutritional_value" Relationship="Self.FK_nutritional_value_measurements" FromRole="measurements" ToRole="nutritional_value" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_measurements" FromRole="measurements" ToRole="products_in_recipe" />
-    <NavigationProperty Name="products" Relationship="Self.FK_products_measurements" FromRole="measurements" ToRole="products" />
-    <NavigationProperty Name="products1" Relationship="Self.FK_products_measurements1" FromRole="measurements" ToRole="products" />
   </EntityType>
   <EntityType Name="nutritional_value">
     <Key>
@@ -65,15 +63,11 @@
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="amount_weight_in_volume" Type="Double" Nullable="false" />
-    <Property Name="unit_amount" Type="Double" />
+    <Property Name="unit_amount" Type="Double" Nullable="false" />
     <Property Name="nutritional_per" Type="Int32" Nullable="false" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="approved" Type="Boolean" Nullable="false" />
-    <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
-    <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
     <NavigationProperty Name="measure_type" Relationship="Self.FK_products_measure_type" FromRole="products" ToRole="measure_type" />
-    <NavigationProperty Name="measurement" Relationship="Self.FK_products_measurements" FromRole="products" ToRole="measurements" />
-    <NavigationProperty Name="measurement1" Relationship="Self.FK_products_measurements1" FromRole="products" ToRole="measurements" />
     <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_products" FromRole="products" ToRole="products_in_nutritional_value" />
     <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products" FromRole="products" ToRole="products_in_recipe" />
     <NavigationProperty Name="user" Relationship="Self.FK_products_user" FromRole="products" ToRole="user" />
@@ -276,30 +270,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_products_measurements">
-    <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
-    <End Role="products" Type="Self.product" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="measurements">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="products">
-        <PropertyRef Name="measurements_id_volume" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_products_measurements1">
-    <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
-    <End Role="products" Type="Self.product" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="measurements">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="products">
-        <PropertyRef Name="measurements_id_weight" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_products_in_nutritional_value_nutritional_value">
     <End Role="nutritional_value" Type="Self.nutritional_value" Multiplicity="1" />
     <End Role="products_in_nutritional_value" Type="Self.products_in_nutritional_value" Multiplicity="*" />
@@ -430,14 +400,6 @@
     <AssociationSet Name="FK_products_in_recipe_measurements" Association="Self.FK_products_in_recipe_measurements">
       <End Role="measurements" EntitySet="measurements" />
       <End Role="products_in_recipe" EntitySet="products_in_recipe" />
-    </AssociationSet>
-    <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
-      <End Role="measurements" EntitySet="measurements" />
-      <End Role="products" EntitySet="products" />
-    </AssociationSet>
-    <AssociationSet Name="FK_products_measurements1" Association="Self.FK_products_measurements1">
-      <End Role="measurements" EntitySet="measurements" />
-      <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_products_in_nutritional_value_nutritional_value" Association="Self.FK_products_in_nutritional_value_nutritional_value">
       <End Role="nutritional_value" EntitySet="nutritional_value" />

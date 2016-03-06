@@ -191,9 +191,6 @@ J:\final\Oracle\Oracle\bin\EntityFramework.dll
 J:\final\Oracle\Oracle\bin\Microsoft.Web.Infrastructure.dll
 J:\final\Oracle\Oracle\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 J:\final\Oracle\Oracle\bin\Newtonsoft.Json.dll
-J:\final\Oracle\Oracle\bin\System.Net.Http.Formatting.dll
-J:\final\Oracle\Oracle\bin\System.Web.Http.dll
-J:\final\Oracle\Oracle\bin\System.Web.Http.WebHost.dll
 J:\final\Oracle\Oracle\bin\System.Web.Mvc.dll
 J:\final\Oracle\Oracle\bin\System.Web.Optimization.dll
 J:\final\Oracle\Oracle\bin\System.Web.Providers.dll
@@ -204,9 +201,6 @@ J:\final\Oracle\Oracle\bin\System.Web.WebPages.Razor.dll
 J:\final\Oracle\Oracle\bin\WebGrease.dll
 J:\final\Oracle\Oracle\bin\EntityFramework.xml
 J:\final\Oracle\Oracle\bin\Newtonsoft.Json.xml
-J:\final\Oracle\Oracle\bin\System.Net.Http.Formatting.xml
-J:\final\Oracle\Oracle\bin\System.Web.Http.xml
-J:\final\Oracle\Oracle\bin\System.Web.Http.WebHost.xml
 J:\final\Oracle\Oracle\bin\System.Web.Mvc.xml
 J:\final\Oracle\Oracle\bin\System.Web.Razor.xml
 J:\final\Oracle\Oracle\bin\System.Web.WebPages.xml

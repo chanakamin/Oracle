@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="recipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="recipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="id" />
@@ -57,12 +57,10 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="50" />
           <Property Name="amount_weight_in_volume" Type="float" Nullable="false" />
-          <Property Name="unit_amount" Type="float" />
+          <Property Name="unit_amount" Type="float" Nullable="false" />
           <Property Name="nutritional_per" Type="int" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="approved" Type="bit" Nullable="false" />
-          <Property Name="measurements_id_volume" Type="int" Nullable="false" />
-          <Property Name="measurements_id_weight" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="products_in_nutritional_value">
           <Key>
@@ -129,7 +127,7 @@
           <Property Name="user_or_manager" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="measurement_with_type">
           <Key>
             <PropertyRef Name="id" />
@@ -145,7 +143,7 @@ warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.mea
           <Property Name="measure_type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="nutritional_value_details">
           <Key>
             <PropertyRef Name="id" />
@@ -293,30 +291,6 @@ warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nut
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_products_measurements">
-          <End Role="measurements" Type="Self.measurements" Multiplicity="1" />
-          <End Role="products" Type="Self.products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="measurements">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="measurements_id_volume" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_products_measurements1">
-          <End Role="measurements" Type="Self.measurements" Multiplicity="1" />
-          <End Role="products" Type="Self.products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="measurements">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="measurements_id_weight" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_products_user">
           <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -442,14 +416,6 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
             <End Role="measure_type" EntitySet="measure_type" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
-          <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
-            <End Role="measurements" EntitySet="measurements" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_products_measurements1" Association="Self.FK_products_measurements1">
-            <End Role="measurements" EntitySet="measurements" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
           <AssociationSet Name="FK_products_user" Association="Self.FK_products_user">
             <End Role="user" EntitySet="user" />
             <End Role="products" EntitySet="products" />
@@ -467,8 +433,7 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
             <End Role="recipe_for_user" EntitySet="recipe_for_user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="recipeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -515,8 +480,6 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <NavigationProperty Name="measurement1" Relationship="Self.FK_measurements_measurements" FromRole="measurements1" ToRole="measurements" />
           <NavigationProperty Name="nutritional_value" Relationship="Self.FK_nutritional_value_measurements" FromRole="measurements" ToRole="nutritional_value" />
           <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_measurements" FromRole="measurements" ToRole="products_in_recipe" />
-          <NavigationProperty Name="products" Relationship="Self.FK_products_measurements" FromRole="measurements" ToRole="products" />
-          <NavigationProperty Name="products1" Relationship="Self.FK_products_measurements1" FromRole="measurements" ToRole="products" />
         </EntityType>
         <EntityType Name="nutritional_value">
           <Key>
@@ -537,15 +500,11 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="amount_weight_in_volume" Type="Double" Nullable="false" />
-          <Property Name="unit_amount" Type="Double" />
+          <Property Name="unit_amount" Type="Double" Nullable="false" />
           <Property Name="nutritional_per" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="approved" Type="Boolean" Nullable="false" />
-          <Property Name="measurements_id_volume" Type="Int32" Nullable="false" />
-          <Property Name="measurements_id_weight" Type="Int32" Nullable="false" />
           <NavigationProperty Name="measure_type" Relationship="Self.FK_products_measure_type" FromRole="products" ToRole="measure_type" />
-          <NavigationProperty Name="measurement" Relationship="Self.FK_products_measurements" FromRole="products" ToRole="measurements" />
-          <NavigationProperty Name="measurement1" Relationship="Self.FK_products_measurements1" FromRole="products" ToRole="measurements" />
           <NavigationProperty Name="products_in_nutritional_value" Relationship="Self.FK_products_in_nutritional_value_products" FromRole="products" ToRole="products_in_nutritional_value" />
           <NavigationProperty Name="products_in_recipe" Relationship="Self.FK_products_in_recipe_products" FromRole="products" ToRole="products_in_recipe" />
           <NavigationProperty Name="user" Relationship="Self.FK_products_user" FromRole="products" ToRole="user" />
@@ -748,30 +707,6 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_products_measurements">
-          <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
-          <End Role="products" Type="Self.product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="measurements">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="measurements_id_volume" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_products_measurements1">
-          <End Role="measurements" Type="Self.measurement" Multiplicity="1" />
-          <End Role="products" Type="Self.product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="measurements">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="measurements_id_weight" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_products_in_nutritional_value_nutritional_value">
           <End Role="nutritional_value" Type="Self.nutritional_value" Multiplicity="1" />
           <End Role="products_in_nutritional_value" Type="Self.products_in_nutritional_value" Multiplicity="*" />
@@ -903,14 +838,6 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
             <End Role="measurements" EntitySet="measurements" />
             <End Role="products_in_recipe" EntitySet="products_in_recipe" />
           </AssociationSet>
-          <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
-            <End Role="measurements" EntitySet="measurements" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_products_measurements1" Association="Self.FK_products_measurements1">
-            <End Role="measurements" EntitySet="measurements" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
           <AssociationSet Name="FK_products_in_nutritional_value_nutritional_value" Association="Self.FK_products_in_nutritional_value_nutritional_value">
             <End Role="nutritional_value" EntitySet="nutritional_value" />
             <End Role="products_in_nutritional_value" EntitySet="products_in_nutritional_value" />
@@ -1005,9 +932,7 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
                 <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
-                <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
-                <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products_in_nutritional_value">

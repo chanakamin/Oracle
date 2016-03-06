@@ -10,7 +10,7 @@
             this.nutritional_per = measure;
         }       
 
-        Product.prototype.addProduct = function (nutritionals, Volume, Weight) {
+        Product.prototype.addProduct = function (nutritionals) {
             var config = {
                 addProduct: this,
                 nutritionals: nutritionals
@@ -19,8 +19,6 @@
                     .then(function (data) {
                         var p = angular.fromJson(data).data.p;
                         this.id = p.id;
-                        this.volume = p.measurements_id_volume;
-                        this.weight = p.measurements_id_weight;
                         products.push(product);
                         console.log("add product succeed");
                     });
@@ -63,7 +61,7 @@
         }        
 
         //  add product to db
-        var addProductToDb = function (product, nutritionals, Volume, Weight) {
+        var addProductToDb = function (product, nutritionals) {
             var config = {
                 addProduct: product,
                 nutritionals: nutritionals
@@ -73,8 +71,6 @@
                         debugger;
                         var p = angular.fromJson(data).data.p;
                         product.id = p.id;
-                        product.volume = p.measurements_id_volume;
-                        product.weight = p.measurements_id_weight;
                         products.push(product);
                         console.log("add product succeed");
                     });
@@ -126,10 +122,10 @@
                 return products.length;
             },
             //add product to list
-            createProduct: function (productName,description,weight,volume,amount,measure) {
+            createProduct: function (productName, description, amount, measure) {
                 var product = new Product(productName,description,amount);
                 products.push(product);
-                addProductToDb(product, volume, weight);
+                addProductToDb(product);
                 return product;
             },
             addProduct: function (product, nutritionalsValues) {

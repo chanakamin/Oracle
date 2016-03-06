@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../plugin/own.js" />
 (function () {
     /* Fuctory to save all functions of recipe */
-    angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory, userFactory) {
+    angular.module('factoryModule').factory('RecipesFactory', function ($http, $location, resourcesFactory, DetailsFactory, ProductsFactory, userFactory, convertFactory) {
         var current = 0;
         var recipes = [],
             categories = [];
@@ -20,7 +20,7 @@
             return Recipe.prototype.getNutritionals.call(this)[nutrition];
         };
          Recipe.prototype.getNutritionals = function () {
-            var nutritionals = DetailsFactory.calcNutrition(this.products, ProductsFactory);
+             var nutritionals = convertFactory.calcNutrition(this.products, ProductsFactory);
             return nutritionals;
         };
         Recipe.prototype.hasProduct = function (id) {

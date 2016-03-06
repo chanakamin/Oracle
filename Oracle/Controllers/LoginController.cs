@@ -65,63 +65,71 @@ namespace Oracle.Controllers
         }
         [HttpPost]
         public JsonResult existUser(string name, string password,string email) {
-            bool can = true;
-            user user = null;
-            string reason = "This User doen't exists";            
-            var c = re.users.Where(u => u.name == name && u.password == password).Count();
-            if (c != 0) {
-                can = false;
-                reason = "This user already exist";
-                user = re.users.Where(u => u.name == name && u.password == password).First();
-                Session["user"] = user;
-            }
-            else if(email != null)
+            using (re = new recipeEntities())
             {
-                c = re.users.Where(u => u.email == email).Count();
-                if (c != 0) {
+                bool can = true;
+                user user = null;
+                string reason = "This User doen't exists";
+                var c = re.users.Where(u => u.name == name && u.password == password).Count();
+                if (c != 0)
+                {
                     can = false;
-                    reason = "This email address already exists";
+                    reason = "This user already exist";
+                    user = re.users.Where(u => u.name == name && u.password == password).First();
+                    Session["user"] = user;
                 }
+                else if (email != null)
+                {
+                    c = re.users.Where(u => u.email == email).Count();
+                    if (c != 0)
+                    {
+                        can = false;
+                        reason = "This email address already exists";
+                    }
+                }
+                if (user != null)
+                    user = user.getSerialize();
+                var ob = new { can = can, reason = reason, exist = !can, user = user };
+                return Json(ob, JsonRequestBehavior.AllowGet);
             }
-            if (user != null)
-                user = user.getSerialize();
-            var ob = new { can = can, reason = reason, exist = !can, user = user};
-            return Json(ob, JsonRequestBehavior.AllowGet); 
         }
 
         [HttpPost]
         public JsonResult addUser(user user)
         {
-            var success = true;
-            if (TryUpdateModel(user))
+            using (re = new recipeEntities())
             {
-                re.users.Add(user);
-                //Membership.CreateUser(user.name, user.password);
-                try
+                var success = true;
+                if (TryUpdateModel(user))
                 {
-                    //Membership.CreateUser(user.name, user.password, user.email);
-                    re.SaveChanges();
+                    re.users.Add(user);
+                    //Membership.CreateUser(user.name, user.password);
+                    try
+                    {
+                        //Membership.CreateUser(user.name, user.password, user.email);
+                        re.SaveChanges();
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        // Retrieve the error messages as a list of strings.
+                        var errorMessages = ex.EntityValidationErrors
+                                .SelectMany(x => x.ValidationErrors)
+                                .Select(x => x.ErrorMessage);
+                        // Join the list to a single string.
+                        var fullErrorMessage = string.Join("; ", errorMessages);
+                        // Combine the original exception message with the new one.
+                        var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+                        // Throw a new DbEntityValidationException with the improved exception message.
+                        throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                    }
+
                 }
-                catch (DbEntityValidationException ex)
+                else
                 {
-                    // Retrieve the error messages as a list of strings.
-                    var errorMessages = ex.EntityValidationErrors
-                            .SelectMany(x => x.ValidationErrors)
-                            .Select(x => x.ErrorMessage);
-                    // Join the list to a single string.
-                    var fullErrorMessage = string.Join("; ", errorMessages);
-                    // Combine the original exception message with the new one.
-                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
-                    // Throw a new DbEntityValidationException with the improved exception message.
-                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                    success = false;
                 }
-                               
+                return Json(new { success = success, id = user.id, user = user.getSerialize() }, JsonRequestBehavior.AllowGet);
             }
-            else
-            {
-                success = false;
-            }
-            return Json(new { success = success,id = user.id, user = user.getSerialize() },JsonRequestBehavior.AllowGet);
         }
         public ActionResult allRecipes() {
             return View();

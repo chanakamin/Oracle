@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['controllers', 'ngRoute', 'factoryModule', ]);
+﻿var app = angular.module('app', ['controllers', 'ngRoute', 'factoryModule']);
 app.config(function ($routeProvider, $locationProvider)
 {
     'use strict'
@@ -45,16 +45,23 @@ app.config(function ($routeProvider, $locationProvider)
     //$locationProvider.html5Mode(true);
 });
 // when app runs, all factories are being initialize.
-app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, RecipesFactory, resourcesFactory, userFactory) {
+app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, RecipesFactory, resourcesFactory, userFactory, convertFactory) {
     resourcesFactory.initResources().then(function (data) {
         ProductsFactory.initProducts();
         RecipesFactory.initRecipes();
         DetailsFactory.init();
         userFactory.setUser(DetailsFactory.user());
         $rootScope.$broadcast('init');
+        angular.module('factoryModule').value('fact', {
+            details: DetailsFactory,
+            products: ProductsFactory,
+            recipes: RecipesFactory
+        });
     }); 
     $rootScope.history = [];
     $rootScope.$on('$routeChangeSuccess', function (event, routeData) {
             $rootScope.history.push($location.$$path);
     });
+    convertFactory.init();
+
 });

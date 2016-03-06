@@ -292,6 +292,7 @@
     <Content Include="Scripts\angularModules\Recipe\app.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\addProduct.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\1ctrlModule.js" />
+    <Content Include="Scripts\angularModules\Recipe\controllers\calculator.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\index.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\newRecipeCtrl.js" />
     <Content Include="Scripts\angularModules\Recipe\controllers\nutritionalsRecipe.js" />
@@ -305,6 +306,7 @@
     <Content Include="Scripts\angularModules\Recipe\directives\productRecipe.js" />
     <Content Include="Scripts\angularModules\Recipe\directives\search.js" />
     <Content Include="Scripts\angularModules\Recipe\directives\selectDirective.js" />
+    <Content Include="Scripts\angularModules\Recipe\factories\convertion.js" />
     <Content Include="Scripts\angularModules\Recipe\factories\detailsFactory.js" />
     <Content Include="Scripts\angularModules\Recipe\factories\productFactory.js" />
     <Content Include="Scripts\angularModules\Recipe\factories\1mainFactory.js" />
@@ -312,6 +314,7 @@
     <Content Include="Scripts\angularModules\Recipe\factories\uiFactory.js" />
     <Content Include="Scripts\angularModules\Recipe\factories\1user.js" />
     <Content Include="Scripts\angularModules\Recipe\filters\1filterModule.js" />
+    <Content Include="Scripts\angularModules\Recipe\filters\convert.js" />
     <Content Include="Scripts\angularSrc\angular-animate.js" />
     <Content Include="Scripts\angularSrc\angular-animate.min.js" />
     <Content Include="Scripts\angularSrc\angular-route.js" />
@@ -380,6 +383,7 @@
     <Content Include="Views\Manager\editProduct.cshtml" />
     <Content Include="Views\Recipe\showProduct.cshtml" />
     <Content Include="Views\Recipe\search.cshtml" />
+    <Content Include="Views\Recipe\calculator.cshtml" />
     <None Include="Views\Shared\Welcome.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

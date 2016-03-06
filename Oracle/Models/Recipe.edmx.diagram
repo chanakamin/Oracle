@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f07bfedd2584f359b09d4516e820dc9" Name="Diagram1">
+      <Diagram DiagramId="66bf70e8922a42e08cf1cc165c8b6991" Name="Diagram1">
         <EntityTypeShape EntityType="recipeModel.category" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.equipment_in_recipe" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.measure_type" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.measurement" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="recipeModel.nutritional_value" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeModel.nutritional_value" Width="1.5" PointX="4.875" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.product" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="recipeModel.products_in_nutritional_value" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeModel.products_in_nutritional_value" Width="1.5" PointX="8.125" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.products_in_recipe" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.recipe" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.recipe_for_user" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.sysdiagram" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="recipeModel.user" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="recipeModel.user" Width="1.5" PointX="1.375" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.measurement_with_type" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="recipeModel.nutritional_value_details" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="recipeModel.FK_recipe_categories" ManuallyRouted="false" />
@@ -26,8 +26,6 @@
         <AssociationConnector Association="recipeModel.FK_measurements_measurements" ManuallyRouted="false" />
         <AssociationConnector Association="recipeModel.FK_nutritional_value_measurements" ManuallyRouted="false" />
         <AssociationConnector Association="recipeModel.FK_products_in_recipe_measurements" ManuallyRouted="false" />
-        <AssociationConnector Association="recipeModel.FK_products_measurements" ManuallyRouted="false" />
-        <AssociationConnector Association="recipeModel.FK_products_measurements1" ManuallyRouted="false" />
         <AssociationConnector Association="recipeModel.FK_products_in_nutritional_value_nutritional_value" ManuallyRouted="false" />
         <AssociationConnector Association="recipeModel.FK_products_in_nutritional_value_products" ManuallyRouted="false" />
         <AssociationConnector Association="recipeModel.FK_products_in_recipe_products" ManuallyRouted="false" />

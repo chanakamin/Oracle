@@ -60,8 +60,6 @@
           <ScalarProperty Name="nutritional_per" ColumnName="nutritional_per" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="approved" ColumnName="approved" />
-          <ScalarProperty Name="measurements_id_volume" ColumnName="measurements_id_volume" />
-          <ScalarProperty Name="measurements_id_weight" ColumnName="measurements_id_weight" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

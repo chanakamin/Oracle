@@ -30,9 +30,9 @@ namespace Oracle
             bundles.Add(new ScriptBundle("~/bundles/angularRecipes").IncludeDirectory(
                 "~/Scripts/angularModules/Recipe", "*.js").IncludeDirectory(
                 "~/Scripts/angularModules/Recipe/factories", "*.js").IncludeDirectory(
+                "~/Scripts/angularModules/Recipe/filters", "*.js").IncludeDirectory(
                 "~/Scripts/angularModules/Recipe/controllers", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/Recipe/directives", "*.js").IncludeDirectory(
-                "~/Scripts/angularModules/Recipe/filters", "*.js"));
+                "~/Scripts/angularModules/Recipe/directives", "*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularLogin").IncludeDirectory(
                 "~/Scripts/angularModules/Login", "*.js"));

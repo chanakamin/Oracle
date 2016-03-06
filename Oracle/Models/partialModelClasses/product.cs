@@ -33,31 +33,31 @@ namespace Oracle.Models
         // This method set measurements of products, get 2 strings that represent measurements.
         // Those strings can be the alias of measurement, its id or null.
         // If they are null, default values are asigned.
-        public product setMeasurements(string aliasVolume, string aliasWeight)
-        {
-            int weight, volume;
-            if (!string.IsNullOrEmpty(aliasVolume) && !string.IsNullOrEmpty(aliasWeight))
-            {
-                if (int.TryParse(aliasVolume, out volume) && int.TryParse(aliasWeight, out weight))
-                {
-                    this.measurements_id_volume = volume;
-                    this.measurements_id_weight = weight;
-                }
-                else
-                {
-                    this.measurements_id_volume = re.measurements
-                        .FirstOrDefault(m => m.alias == aliasVolume).id;
-                    this.measurements_id_weight = re.measurements
-                        .FirstOrDefault(m => m.alias == aliasWeight).id;
-                }
-            }
-            else
-            {
-                this.measurements_id_volume = 2;
-                this.measurements_id_weight = 1;
-            }
-            return this;
-        }
+        //public product setMeasurements(string aliasVolume, string aliasWeight)
+        //{
+        //    int weight, volume;
+        //    if (!string.IsNullOrEmpty(aliasVolume) && !string.IsNullOrEmpty(aliasWeight))
+        //    {
+        //        if (int.TryParse(aliasVolume, out volume) && int.TryParse(aliasWeight, out weight))
+        //        {
+        //            this.measurements_id_volume = volume;
+        //            this.measurements_id_weight = weight;
+        //        }
+        //        else
+        //        {
+        //            this.measurements_id_volume = re.measurements
+        //                .FirstOrDefault(m => m.alias == aliasVolume).id;
+        //            this.measurements_id_weight = re.measurements
+        //                .FirstOrDefault(m => m.alias == aliasWeight).id;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        this.measurements_id_volume = 2;
+        //        this.measurements_id_weight = 1;
+        //    }
+        //    return this;
+        //}
 
         // function for serialize
         public product getSerialize()
@@ -67,8 +67,7 @@ namespace Oracle.Models
                 id = this.id,
                 name = this.name,
                 description = this.description,
-                measurements_id_volume = this.measurements_id_volume,
-                measurements_id_weight = this.measurements_id_weight,
+                unit_amount = this.unit_amount,
                 amount_weight_in_volume = this.amount_weight_in_volume,
                 measure_type = re.measure_type.Where(t=>t.id == this.nutritional_per).First().getSerialize(),
                 user_id = this.user_id,

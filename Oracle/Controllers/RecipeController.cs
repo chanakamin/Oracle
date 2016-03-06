@@ -100,5 +100,9 @@ namespace Oracle.Controllers
         {
             return PartialView();
         }
+        public ActionResult calculator()
+        {
+            return PartialView();
+        }
     }
 }

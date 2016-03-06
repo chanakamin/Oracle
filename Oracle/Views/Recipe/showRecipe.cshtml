@@ -30,7 +30,7 @@
     </div>
     <div class="recipe-ingredients recipe">
         <h5>Ingredients</h5>
-        <div ng-repeat="p in recipe.products">
+        <div ng-repeat="p in recipe.products track by p.id">
             <label>{{p.amount}}</label>
             <label>{{p.measurement.name}}</label>
             <label>{{p.product.name}}</label>
@@ -50,7 +50,7 @@
 </div>
 <!--this is a disapearing menu (how to do? toggle?--check.)-->
 <div class="col-xs-3" >
-    
+    <calculator products="recipe.products"></calculator>
 </div>
 
 

@@ -52,12 +52,10 @@
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="description" Type="nvarchar" MaxLength="50" />
     <Property Name="amount_weight_in_volume" Type="float" Nullable="false" />
-    <Property Name="unit_amount" Type="float" />
+    <Property Name="unit_amount" Type="float" Nullable="false" />
     <Property Name="nutritional_per" Type="int" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="approved" Type="bit" Nullable="false" />
-    <Property Name="measurements_id_volume" Type="int" Nullable="false" />
-    <Property Name="measurements_id_weight" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="products_in_nutritional_value">
     <Key>
@@ -124,7 +122,7 @@
     <Property Name="user_or_manager" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.measurement_with_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="measurement_with_type">
     <Key>
       <PropertyRef Name="id" />
@@ -140,7 +138,7 @@ warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.mea
     <Property Name="measure_type" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'recipe.dbo.nutritional_value_details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="nutritional_value_details">
     <Key>
       <PropertyRef Name="id" />
@@ -288,30 +286,6 @@ warning 6002: The table/view 'J:\FINAL\ORACLE\ORACLE\APP_DATA\RECIPE.MDF.dbo.nut
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_products_measurements">
-    <End Role="measurements" Type="Self.measurements" Multiplicity="1" />
-    <End Role="products" Type="Self.products" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="measurements">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="products">
-        <PropertyRef Name="measurements_id_volume" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_products_measurements1">
-    <End Role="measurements" Type="Self.measurements" Multiplicity="1" />
-    <End Role="products" Type="Self.products" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="measurements">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="products">
-        <PropertyRef Name="measurements_id_weight" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_products_user">
     <End Role="user" Type="Self.user" Multiplicity="1" />
     <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -435,14 +409,6 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
     </AssociationSet>
     <AssociationSet Name="FK_products_measure_type" Association="Self.FK_products_measure_type">
       <End Role="measure_type" EntitySet="measure_type" />
-      <End Role="products" EntitySet="products" />
-    </AssociationSet>
-    <AssociationSet Name="FK_products_measurements" Association="Self.FK_products_measurements">
-      <End Role="measurements" EntitySet="measurements" />
-      <End Role="products" EntitySet="products" />
-    </AssociationSet>
-    <AssociationSet Name="FK_products_measurements1" Association="Self.FK_products_measurements1">
-      <End Role="measurements" EntitySet="measurements" />
       <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_products_user" Association="Self.FK_products_user">
