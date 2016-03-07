@@ -8,8 +8,7 @@
             this.description;
             this.weight_in_volume = weight_in_volume;
             this.nutritional_per = measure;
-        }       
-
+        }    
         Product.prototype.addProduct = function (nutritionals) {
             var config = {
                 addProduct: this,

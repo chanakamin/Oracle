@@ -13,7 +13,6 @@
             $location.path('/recipe/' + this.id);
             RecipesFactory.setCurrent(this.id);
         };
-
         // recipes - object contains functions related to recipes display.
         var recipes = {
             // list of all recipes

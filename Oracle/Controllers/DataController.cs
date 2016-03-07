@@ -61,7 +61,7 @@ namespace Oracle.Controllers
                 products = products.Select(p => p.getSerialize()).ToList();
                 var prod = products.Select(p => new { product = p, nutritional = nutritionalDetails.Where(nv => nv.product_id == p.id).ToList() }).ToList();
                 return Json(prod, JsonRequestBehavior.AllowGet);
-            }           
+            }   
         }
 
         [HttpGet]
@@ -80,7 +80,7 @@ namespace Oracle.Controllers
                     },
                     JsonRequestBehavior.AllowGet
                     );
-            }           
+            }  
         }
 
         [HttpGet]
@@ -144,6 +144,7 @@ namespace Oracle.Controllers
                 }
                 return Json(new { success = true, p = p.getSerialize() });
             }
+
         }
         [HttpPost]
         public JsonResult addRecipe(recipe recipe,equipment_in_recipe[] equipments, products_in_recipe[] products_in_recipe)

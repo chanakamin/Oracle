@@ -444,7 +444,7 @@ FROM [dbo].[nutritional_value_details] AS [nutritional_value_details]</DefiningQ
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
+      <NavigationProperty Name="recipes" Relationship="Self.FK_recipe_categories" FromRole="categories" ToRole="recipe" />
         </EntityType>
         <EntityType Name="equipment_in_recipe">
           <Key>

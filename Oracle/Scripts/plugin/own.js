@@ -14,7 +14,6 @@ Array.method('getCopy',function () {
 Function.method('Call', function (method,obj,values) {
     return this.prototype[method].apply(obj, values);
 });
-
 //Object.method('getCopy', function () {
 //    var a = {};
 //    if (typeof this === 'object') {

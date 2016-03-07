@@ -63,5 +63,4 @@ app.run(function ($location, $rootScope, ProductsFactory, DetailsFactory, Recipe
             $rootScope.history.push($location.$$path);
     });
     convertFactory.init();
-
 });

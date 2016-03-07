@@ -6,7 +6,6 @@
             measurements = [],
             measureTypes = [],
             user = 0;
-        
         // function to get measurement per id
         function getMeasurement(id)
         {

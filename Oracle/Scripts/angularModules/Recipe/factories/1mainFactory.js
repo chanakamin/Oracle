@@ -8,7 +8,5 @@ angular.module("factoryModule", []).run(function (DetailsFactory, RecipesFactory
         details: DetailsFactory,
         products: ProductsFactory,
         recipes: RecipesFactory
-    }
-    
+    }    
 });
-

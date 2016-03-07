@@ -21,7 +21,6 @@
         };
          Recipe.prototype.getNutritionals = function () {
              var nutritionals = convertFactory.calcNutrition(this.products, ProductsFactory);
-            return nutritionals;
         };
         Recipe.prototype.hasProduct = function (id) {
             return this.products.some(function (p) {
